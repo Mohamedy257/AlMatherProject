@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="221f2158f83c4cf79400636a8139c541" Name="Diagram1" ZoomLevel="91">
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.Apartment" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.AspNetRole" Width="1.5" PointX="7.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.AspNetUserClaim" Width="1.5" PointX="12.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.AspNetUserLogin" Width="1.5" PointX="12.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.AspNetUser" Width="1.5" PointX="10" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.Catogery" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.CommonIssue" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.CommonItem" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.CommonType" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.Complaint" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.Customer" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.Status" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.Tower" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="MZ.ComplaintsSystemsModel.FK_Complaints_Apartments_02" ManuallyRouted="false" />
+        <AssociationConnector Association="MZ.ComplaintsSystemsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="MZ.ComplaintsSystemsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="MZ.ComplaintsSystemsModel.FK_CommonTypes_Catogeries" ManuallyRouted="false" />
+        <AssociationConnector Association="MZ.ComplaintsSystemsModel.FK_Complaints_CommonIssues" ManuallyRouted="false" />
+        <AssociationConnector Association="MZ.ComplaintsSystemsModel.FK_CommonItems_CommonTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="MZ.ComplaintsSystemsModel.FK_Complaints_CommonItems" ManuallyRouted="false" />
+        <AssociationConnector Association="MZ.ComplaintsSystemsModel.FK_Complaints_Complaints" ManuallyRouted="false" />
+        <AssociationConnector Association="MZ.ComplaintsSystemsModel.FK_Complaints_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="MZ.ComplaintsSystemsModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.Vw_Complaints" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.RegularMaintenance_Items" Width="1.5" PointX="10.75" PointY="5.75" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.RegularMaintence" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.aspnet_Applications" Width="1.5" PointX="7.375" PointY="13.875" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.aspnet_Paths" Width="1.5" PointX="9.625" PointY="13.875" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.aspnet_SchemaVersions" Width="1.5" PointX="12.375" PointY="13.75" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.aspnet_WebEvent_Events" Width="1.5" PointX="14.375" PointY="0.75" />
+        <AssociationConnector Association="MZ.ComplaintsSystemsModel.FK__aspnet_Pa__Appli__30592A6F" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.Vw_RegularMaintenance" Width="1.5" PointX="3.375" PointY="14.75" />
+        <EntityTypeShape EntityType="MZ.ComplaintsSystemsModel.technician" Width="1.5" PointX="14.375" PointY="5.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

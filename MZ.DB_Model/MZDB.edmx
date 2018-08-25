@@ -1,0 +1,1977 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MZ.ComplaintsSystemsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Apartments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Desc" Type="nvarchar(max)" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="TowerID" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Catogeries">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CommonIssues">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CommonItems">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="TypeId" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="CommonTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="CatogeryID" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Complaints">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApartmentId" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Lvl1ID" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="LVL2ID" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="LVL3ID" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="AppointmentDateTime" Type="datetime" />
+          <Property Name="CreateDateTime" Type="datetime" />
+          <Property Name="Paint" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Status" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="IssueId" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TechName" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="Subject" Type="nvarchar(max)" />
+          <Property Name="Id_Numer" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+          <Property Name="Cutomer_Name" Type="nvarchar(max)" />
+          <Property Name="Customer_Type" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" />
+          <Property Name="IDType" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="IDNumber" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="10" />
+          <Property Name="OwnershipType" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gender" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Towers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Desc" Type="nvarchar(max)" />
+          <Property Name="Note" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MZ.ComplaintsSystems.dbo.Vw_Complaints' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Vw_Complaints">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="FullName" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="flat" Type="nvarchar(max)" />
+          <Property Name="Item" Type="nvarchar(max)" />
+          <Property Name="CreateDateTime" Type="datetime" />
+          <Property Name="AppointmentDateTime" Type="datetime" />
+          <Property Name="Status" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="cat" Type="nvarchar(max)" />
+          <Property Name="type" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="10" />
+          <Property Name="IDNumber" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="OwnershipType" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Gender" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="Subject" Type="nvarchar(max)" />
+          <Property Name="Paint" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <Association Name="FK_CommonItems_CommonTypes">
+          <End Role="CommonTypes" Type="Self.CommonTypes" Multiplicity="0..1" />
+          <End Role="CommonItems" Type="Self.CommonItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommonTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CommonItems">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommonTypes_Catogeries">
+          <End Role="Catogeries" Type="Self.Catogeries" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CommonTypes" Type="Self.CommonTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catogeries">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CommonTypes">
+              <PropertyRef Name="CatogeryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Complaints_Apartments_02">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="0..1" />
+          <End Role="Complaints" Type="Self.Complaints" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Complaints">
+              <PropertyRef Name="ApartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Complaints_CommonIssues">
+          <End Role="CommonIssues" Type="Self.CommonIssues" Multiplicity="0..1" />
+          <End Role="Complaints" Type="Self.Complaints" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommonIssues">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Complaints">
+              <PropertyRef Name="IssueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Complaints_CommonItems">
+          <End Role="CommonItems" Type="Self.CommonItems" Multiplicity="0..1" />
+          <End Role="Complaints" Type="Self.Complaints" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommonItems">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Complaints">
+              <PropertyRef Name="LVL3ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Complaints_Complaints">
+          <End Role="Complaints" Type="Self.Complaints" Multiplicity="1" />
+          <End Role="Complaints1" Type="Self.Complaints" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Complaints">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Complaints1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Complaints_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Complaints" Type="Self.Complaints" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Complaints">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="usp_ApartmentsDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_ApartmentsInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Desc" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Note" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="TowerID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_ApartmentsSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_ApartmentsSelectByTower" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_ApartmentsUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Desc" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Note" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="TowerID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CatogeriesDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CatogeriesInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="usp_CatogeriesSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CatogeriesUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="usp_CommonIssuesDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CommonIssuesInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="usp_CommonIssuesSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CommonIssuesUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="usp_CommonItemsDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CommonItemsInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+          <Parameter Name="Name" Type="varchar(max)" Mode="In" />
+          <Parameter Name="TypeId" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CommonItemsSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CommonItemsSelectByType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CommonItemsUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+          <Parameter Name="Name" Type="varchar(max)" Mode="In" />
+          <Parameter Name="TypeId" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CommonTypesDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CommonTypesInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="CatogeryID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CommonTypesSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CommonTypesSelectByCatogeryByCatogery" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CommonTypesUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="CatogeryID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_ComplaintsDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_ComplaintsInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApartmentId" Type="numeric" Mode="In" />
+          <Parameter Name="Lvl1ID" Type="numeric" Mode="In" />
+          <Parameter Name="LVL2ID" Type="numeric" Mode="In" />
+          <Parameter Name="LVL3ID" Type="numeric" Mode="In" />
+          <Parameter Name="AppointmentDateTime" Type="datetime" Mode="In" />
+          <Parameter Name="CreateDateTime" Type="datetime" Mode="In" />
+          <Parameter Name="Paint" Type="numeric" Mode="In" />
+          <Parameter Name="Status" Type="numeric" Mode="In" />
+          <Parameter Name="IssueId" Type="numeric" Mode="In" />
+          <Parameter Name="TechName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="UserId" Type="numeric" Mode="In" />
+          <Parameter Name="Note" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Subject" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Id_Numer" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Cutomer_Name" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Customer_Type" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_ComplaintsSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_ComplaintsUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+          <Parameter Name="ApartmentId" Type="numeric" Mode="In" />
+          <Parameter Name="Lvl1ID" Type="numeric" Mode="In" />
+          <Parameter Name="LVL2ID" Type="numeric" Mode="In" />
+          <Parameter Name="LVL3ID" Type="numeric" Mode="In" />
+          <Parameter Name="AppointmentDateTime" Type="datetime" Mode="In" />
+          <Parameter Name="CreateDateTime" Type="datetime" Mode="In" />
+          <Parameter Name="Paint" Type="numeric" Mode="In" />
+          <Parameter Name="Status" Type="numeric" Mode="In" />
+          <Parameter Name="IssueId" Type="numeric" Mode="In" />
+          <Parameter Name="TechName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="UserId" Type="numeric" Mode="In" />
+          <Parameter Name="Note" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Subject" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Id_Numer" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Cutomer_Name" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Customer_Type" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CustomersDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CustomersInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+          <Parameter Name="FullName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IDType" Type="numeric" Mode="In" />
+          <Parameter Name="IDNumber" Type="numeric" Mode="In" />
+          <Parameter Name="Phone" Type="numeric" Mode="In" />
+          <Parameter Name="OwnershipType" Type="numeric" Mode="In" />
+          <Parameter Name="Gender" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CustomersSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_CustomersUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+          <Parameter Name="FullName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IDType" Type="numeric" Mode="In" />
+          <Parameter Name="IDNumber" Type="numeric" Mode="In" />
+          <Parameter Name="Phone" Type="numeric" Mode="In" />
+          <Parameter Name="OwnershipType" Type="numeric" Mode="In" />
+          <Parameter Name="Gender" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_QueryComplaints" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApartmentId" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_TowersDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_TowersInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Desc" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Note" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="usp_TowersSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_TowersUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Desc" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Note" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="MZComplaintsSystemsModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Apartments" EntityType="Self.Apartments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Catogeries" EntityType="Self.Catogeries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommonIssues" EntityType="Self.CommonIssues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommonItems" EntityType="Self.CommonItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommonTypes" EntityType="Self.CommonTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Complaints" EntityType="Self.Complaints" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Towers" EntityType="Self.Towers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vw_Complaints" EntityType="Self.Vw_Complaints" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Vw_Complaints].[FullName] AS [FullName], 
+    [Vw_Complaints].[Name] AS [Name], 
+    [Vw_Complaints].[flat] AS [flat], 
+    [Vw_Complaints].[Item] AS [Item], 
+    [Vw_Complaints].[CreateDateTime] AS [CreateDateTime], 
+    [Vw_Complaints].[AppointmentDateTime] AS [AppointmentDateTime], 
+    [Vw_Complaints].[Status] AS [Status], 
+    [Vw_Complaints].[ID] AS [ID], 
+    [Vw_Complaints].[cat] AS [cat], 
+    [Vw_Complaints].[type] AS [type], 
+    [Vw_Complaints].[Phone] AS [Phone], 
+    [Vw_Complaints].[IDNumber] AS [IDNumber], 
+    [Vw_Complaints].[OwnershipType] AS [OwnershipType], 
+    [Vw_Complaints].[Gender] AS [Gender], 
+    [Vw_Complaints].[Note] AS [Note], 
+    [Vw_Complaints].[Subject] AS [Subject], 
+    [Vw_Complaints].[Paint] AS [Paint]
+    FROM [dbo].[Vw_Complaints] AS [Vw_Complaints]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_CommonItems_CommonTypes" Association="Self.FK_CommonItems_CommonTypes">
+            <End Role="CommonTypes" EntitySet="CommonTypes" />
+            <End Role="CommonItems" EntitySet="CommonItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommonTypes_Catogeries" Association="Self.FK_CommonTypes_Catogeries">
+            <End Role="Catogeries" EntitySet="Catogeries" />
+            <End Role="CommonTypes" EntitySet="CommonTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Complaints_Apartments_02" Association="Self.FK_Complaints_Apartments_02">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="Complaints" EntitySet="Complaints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Complaints_CommonIssues" Association="Self.FK_Complaints_CommonIssues">
+            <End Role="CommonIssues" EntitySet="CommonIssues" />
+            <End Role="Complaints" EntitySet="Complaints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Complaints_CommonItems" Association="Self.FK_Complaints_CommonItems">
+            <End Role="CommonItems" EntitySet="CommonItems" />
+            <End Role="Complaints" EntitySet="Complaints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Complaints_Complaints" Association="Self.FK_Complaints_Complaints">
+            <End Role="Complaints" EntitySet="Complaints" />
+            <End Role="Complaints1" EntitySet="Complaints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Complaints_Status" Association="Self.FK_Complaints_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Complaints" EntitySet="Complaints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MZ.ComplaintsSystemsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Apartment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TowerID" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Complaints" Relationship="Self.FK_Complaints_Apartments_02" FromRole="Apartments" ToRole="Complaints" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Catogery">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CommonTypes" Relationship="Self.FK_CommonTypes_Catogeries" FromRole="Catogeries" ToRole="CommonTypes" />
+        </EntityType>
+        <EntityType Name="CommonItem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TypeId" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="CommonType" Relationship="Self.FK_CommonItems_CommonTypes" FromRole="CommonItems" ToRole="CommonTypes" />
+          <NavigationProperty Name="Complaints" Relationship="Self.FK_Complaints_CommonItems" FromRole="CommonItems" ToRole="Complaints" />
+        </EntityType>
+        <EntityType Name="CommonType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CatogeryID" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Catogery" Relationship="Self.FK_CommonTypes_Catogeries" FromRole="CommonTypes" ToRole="Catogeries" />
+          <NavigationProperty Name="CommonItems" Relationship="Self.FK_CommonItems_CommonTypes" FromRole="CommonTypes" ToRole="CommonItems" />
+        </EntityType>
+        <EntityType Name="Complaint">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ApartmentId" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Lvl1ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="LVL2ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="LVL3ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AppointmentDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CreateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="Paint" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Status" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TechName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Apartment" Relationship="Self.FK_Complaints_Apartments_02" FromRole="Complaints" ToRole="Apartments" />
+          <NavigationProperty Name="CommonItem" Relationship="Self.FK_Complaints_CommonItems" FromRole="Complaints" ToRole="CommonItems" />
+          <NavigationProperty Name="Status1" Relationship="Self.FK_Complaints_Status" FromRole="Complaints" ToRole="Status" />
+          <Property Name="IssueId" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="CommonIssue" Relationship="MZ.ComplaintsSystemsModel.FK_Complaints_CommonIssues" FromRole="Complaint" ToRole="CommonIssue" />
+          <NavigationProperty Name="Complaints1" Relationship="MZ.ComplaintsSystemsModel.FK_Complaints_Complaints" FromRole="Complaint" ToRole="Complaint1" />
+          <NavigationProperty Name="Complaint1" Relationship="MZ.ComplaintsSystemsModel.FK_Complaints_Complaints" FromRole="Complaint1" ToRole="Complaint" />
+          <Property Name="Id_Numer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cutomer_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Type" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Complaints" Relationship="Self.FK_Complaints_Status" FromRole="Status" ToRole="Complaints" />
+        </EntityType>
+        <EntityType Name="Tower">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Complaints_Apartments_02">
+          <End Role="Apartments" Type="Self.Apartment" Multiplicity="0..1" />
+          <End Role="Complaints" Type="Self.Complaint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Complaints">
+              <PropertyRef Name="ApartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommonTypes_Catogeries">
+          <End Role="Catogeries" Type="Self.Catogery" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CommonTypes" Type="Self.CommonType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catogeries">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CommonTypes">
+              <PropertyRef Name="CatogeryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommonItems_CommonTypes">
+          <End Role="CommonTypes" Type="Self.CommonType" Multiplicity="0..1" />
+          <End Role="CommonItems" Type="Self.CommonItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommonTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CommonItems">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Complaints_CommonItems">
+          <End Role="CommonItems" Type="Self.CommonItem" Multiplicity="0..1" />
+          <End Role="Complaints" Type="Self.Complaint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommonItems">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Complaints">
+              <PropertyRef Name="LVL3ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Complaints_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Complaints" Type="Self.Complaint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Complaints">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Apartments" EntityType="Self.Apartment" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Catogeries" EntityType="Self.Catogery" />
+          <EntitySet Name="CommonItems" EntityType="Self.CommonItem" />
+          <EntitySet Name="CommonTypes" EntityType="Self.CommonType" />
+          <EntitySet Name="Complaints" EntityType="Self.Complaint" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="Towers" EntityType="Self.Tower" />
+          <AssociationSet Name="FK_Complaints_Apartments_02" Association="Self.FK_Complaints_Apartments_02">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="Complaints" EntitySet="Complaints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommonTypes_Catogeries" Association="Self.FK_CommonTypes_Catogeries">
+            <End Role="Catogeries" EntitySet="Catogeries" />
+            <End Role="CommonTypes" EntitySet="CommonTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommonItems_CommonTypes" Association="Self.FK_CommonItems_CommonTypes">
+            <End Role="CommonTypes" EntitySet="CommonTypes" />
+            <End Role="CommonItems" EntitySet="CommonItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Complaints_CommonItems" Association="Self.FK_Complaints_CommonItems">
+            <End Role="CommonItems" EntitySet="CommonItems" />
+            <End Role="Complaints" EntitySet="Complaints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Complaints_Status" Association="Self.FK_Complaints_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Complaints" EntitySet="Complaints" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <FunctionImport Name="usp_ApartmentsDelete">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ApartmentsInsert" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_ApartmentsInsert_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Desc" Mode="In" Type="String" />
+            <Parameter Name="Note" Mode="In" Type="String" />
+            <Parameter Name="TowerID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ApartmentsSelect" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_ApartmentsSelect_Result)">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ApartmentsUpdate" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_ApartmentsUpdate_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Desc" Mode="In" Type="String" />
+            <Parameter Name="Note" Mode="In" Type="String" />
+            <Parameter Name="TowerID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CatogeriesDelete">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CatogeriesInsert" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_CatogeriesInsert_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CatogeriesSelect" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_CatogeriesSelect_Result)">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CatogeriesUpdate" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_CatogeriesUpdate_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CommonItemsDelete">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CommonItemsInsert" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_CommonItemsInsert_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="TypeId" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CommonItemsSelect" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_CommonItemsSelect_Result)">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CommonItemsUpdate" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_CommonItemsUpdate_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="TypeId" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CommonTypesDelete">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CommonTypesInsert" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_CommonTypesInsert_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="CatogeryID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CommonTypesSelect" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_CommonTypesSelect_Result)">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CommonTypesUpdate" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_CommonTypesUpdate_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="CatogeryID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ComplaintsDelete">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ComplaintsInsert" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_ComplaintsInsert_Result)">
+            <Parameter Name="ApartmentId" Mode="In" Type="Decimal" />
+            <Parameter Name="Lvl1ID" Mode="In" Type="Decimal" />
+            <Parameter Name="LVL2ID" Mode="In" Type="Decimal" />
+            <Parameter Name="LVL3ID" Mode="In" Type="Decimal" />
+            <Parameter Name="AppointmentDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="CreateDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="Paint" Mode="In" Type="Decimal" />
+            <Parameter Name="CustomerId" Mode="In" Type="Decimal" />
+            <Parameter Name="Status" Mode="In" Type="Decimal" />
+            <Parameter Name="TechName" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Decimal" />
+            <Parameter Name="Note" Mode="In" Type="String" />
+            <Parameter Name="Subject" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ComplaintsSelect" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_ComplaintsSelect_Result)">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ComplaintsUpdate" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_ComplaintsUpdate_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="ApartmentId" Mode="In" Type="Decimal" />
+            <Parameter Name="Lvl1ID" Mode="In" Type="Decimal" />
+            <Parameter Name="LVL2ID" Mode="In" Type="Decimal" />
+            <Parameter Name="LVL3ID" Mode="In" Type="Decimal" />
+            <Parameter Name="AppointmentDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="CreateDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="Paint" Mode="In" Type="Decimal" />
+            <Parameter Name="CustomerId" Mode="In" Type="Decimal" />
+            <Parameter Name="Status" Mode="In" Type="Decimal" />
+            <Parameter Name="TechName" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Decimal" />
+            <Parameter Name="Note" Mode="In" Type="String" />
+            <Parameter Name="Subject" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CustomersDelete">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CustomersInsert" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_CustomersInsert_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="FullName" Mode="In" Type="String" />
+            <Parameter Name="IDType" Mode="In" Type="Decimal" />
+            <Parameter Name="IDNumber" Mode="In" Type="Decimal" />
+            <Parameter Name="Phone" Mode="In" Type="Decimal" />
+            <Parameter Name="OwnershipType" Mode="In" Type="Decimal" />
+            <Parameter Name="Gender" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CustomersSelect" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_CustomersSelect_Result)">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CustomersUpdate" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_CustomersUpdate_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="FullName" Mode="In" Type="String" />
+            <Parameter Name="IDType" Mode="In" Type="Decimal" />
+            <Parameter Name="IDNumber" Mode="In" Type="Decimal" />
+            <Parameter Name="Phone" Mode="In" Type="Decimal" />
+            <Parameter Name="OwnershipType" Mode="In" Type="Decimal" />
+            <Parameter Name="Gender" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_TowersDelete">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_TowersInsert" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_TowersInsert_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Desc" Mode="In" Type="String" />
+            <Parameter Name="Note" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_TowersSelect" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_TowersSelect_Result)">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_TowersUpdate" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_TowersUpdate_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Desc" Mode="In" Type="String" />
+            <Parameter Name="Note" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CommonItemsSelectByType" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_CommonItemsSelectByType_Result)">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CommonTypesSelectByCatogeryByCatogery" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_CommonTypesSelectByCatogeryByCatogery_Result)">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ApartmentsSelectByTower" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_ApartmentsSelectByTower_Result)">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <EntitySet Name="Customers" EntityType="MZ.ComplaintsSystemsModel.Customer" />
+          <FunctionImport Name="usp_Complaints">
+          <Parameter Name="ApartmentId" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_QueryComplaints" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_QueryComplaints_Result)">
+          <Parameter Name="ApartmentId" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <EntitySet Name="Vw_Complaints" EntityType="MZ.ComplaintsSystemsModel.Vw_Complaints" />
+          <EntitySet Name="CommonIssues" EntityType="MZ.ComplaintsSystemsModel.CommonIssue" />
+          <AssociationSet Name="FK_Complaints_CommonIssues" Association="MZ.ComplaintsSystemsModel.FK_Complaints_CommonIssues">
+            <End Role="CommonIssue" EntitySet="CommonIssues" />
+            <End Role="Complaint" EntitySet="Complaints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Complaints_Complaints" Association="MZ.ComplaintsSystemsModel.FK_Complaints_Complaints">
+            <End Role="Complaint" EntitySet="Complaints" />
+            <End Role="Complaint1" EntitySet="Complaints" />
+          </AssociationSet>
+          <FunctionImport Name="usp_CommonIssuesDelete">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CommonIssuesInsert" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_CommonIssuesInsert_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CommonIssuesSelect" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_CommonIssuesSelect_Result)">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CommonIssuesUpdate" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_CommonIssuesUpdate_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ComplaintsDelete1">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ComplaintsInsert1" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_ComplaintsInsert1_Result)">
+            <Parameter Name="ApartmentId" Mode="In" Type="Decimal" />
+            <Parameter Name="Lvl1ID" Mode="In" Type="Decimal" />
+            <Parameter Name="LVL2ID" Mode="In" Type="Decimal" />
+            <Parameter Name="LVL3ID" Mode="In" Type="Decimal" />
+            <Parameter Name="AppointmentDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="CreateDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="Paint" Mode="In" Type="Decimal" />
+            <Parameter Name="Status" Mode="In" Type="Decimal" />
+            <Parameter Name="IssueId" Mode="In" Type="Decimal" />
+            <Parameter Name="TechName" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Decimal" />
+            <Parameter Name="Note" Mode="In" Type="String" />
+            <Parameter Name="Subject" Mode="In" Type="String" />
+            <Parameter Name="Id_Numer" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Cutomer_Name" Mode="In" Type="String" />
+            <Parameter Name="Customer_Type" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ComplaintsSelect1" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_ComplaintsSelect1_Result)">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ComplaintsUpdate1" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_ComplaintsUpdate1_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="ApartmentId" Mode="In" Type="Decimal" />
+            <Parameter Name="Lvl1ID" Mode="In" Type="Decimal" />
+            <Parameter Name="LVL2ID" Mode="In" Type="Decimal" />
+            <Parameter Name="LVL3ID" Mode="In" Type="Decimal" />
+            <Parameter Name="AppointmentDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="CreateDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="Paint" Mode="In" Type="Decimal" />
+            <Parameter Name="Status" Mode="In" Type="Decimal" />
+            <Parameter Name="IssueId" Mode="In" Type="Decimal" />
+            <Parameter Name="TechName" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Decimal" />
+            <Parameter Name="Note" Mode="In" Type="String" />
+            <Parameter Name="Subject" Mode="In" Type="String" />
+            <Parameter Name="Id_Numer" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Cutomer_Name" Mode="In" Type="String" />
+            <Parameter Name="Customer_Type" Mode="In" Type="Decimal" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="usp_ApartmentsInsert_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="String" Name="Desc" Nullable="true" />
+          <Property Type="String" Name="Note" Nullable="true" />
+          <Property Type="Decimal" Name="TowerID" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="usp_ApartmentsSelect_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="String" Name="Desc" Nullable="true" />
+          <Property Type="String" Name="Note" Nullable="true" />
+          <Property Type="Decimal" Name="TowerID" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="usp_ApartmentsUpdate_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="String" Name="Desc" Nullable="true" />
+          <Property Type="String" Name="Note" Nullable="true" />
+          <Property Type="Decimal" Name="TowerID" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="usp_CatogeriesInsert_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_CatogeriesSelect_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_CatogeriesUpdate_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_CommonItemsInsert_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="Decimal" Name="TypeId" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="usp_CommonItemsSelect_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="Decimal" Name="TypeId" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="usp_CommonItemsUpdate_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="Decimal" Name="TypeId" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="usp_CommonTypesInsert_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="Decimal" Name="CatogeryID" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="usp_CommonTypesSelect_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="Decimal" Name="CatogeryID" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="usp_CommonTypesUpdate_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="Decimal" Name="CatogeryID" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="usp_ComplaintsInsert_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ApartmentId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Lvl1ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="LVL2ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="LVL3ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="AppointmentDateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="CreateDateTime" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Paint" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="CustomerId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Status" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="TechName" Nullable="true" />
+          <Property Type="Decimal" Name="UserId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Note" Nullable="true" />
+          <Property Type="String" Name="Subject" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_ComplaintsSelect_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ApartmentId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Lvl1ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="LVL2ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="LVL3ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="AppointmentDateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="CreateDateTime" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Paint" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="CustomerId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Status" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="TechName" Nullable="true" />
+          <Property Type="Decimal" Name="UserId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Note" Nullable="true" />
+          <Property Type="String" Name="Subject" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_ComplaintsUpdate_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ApartmentId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Lvl1ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="LVL2ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="LVL3ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="AppointmentDateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="CreateDateTime" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Paint" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="CustomerId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Status" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="TechName" Nullable="true" />
+          <Property Type="Decimal" Name="UserId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Note" Nullable="true" />
+          <Property Type="String" Name="Subject" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_CustomersInsert_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="FullName" Nullable="true" />
+          <Property Type="Decimal" Name="IDType" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="IDNumber" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Phone" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="OwnershipType" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Gender" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="usp_CustomersSelect_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="FullName" Nullable="true" />
+          <Property Type="Decimal" Name="IDType" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="IDNumber" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Phone" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="OwnershipType" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Gender" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="usp_CustomersUpdate_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="FullName" Nullable="true" />
+          <Property Type="Decimal" Name="IDType" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="IDNumber" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Phone" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="OwnershipType" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Gender" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="usp_TowersInsert_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="String" Name="Desc" Nullable="true" />
+          <Property Type="String" Name="Note" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_TowersSelect_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="String" Name="Desc" Nullable="true" />
+          <Property Type="String" Name="Note" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_TowersUpdate_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="String" Name="Desc" Nullable="true" />
+          <Property Type="String" Name="Note" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_CommonItemsSelectByType_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="Decimal" Name="TypeId" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="usp_CommonTypesSelectByCatogeryByCatogery_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="Decimal" Name="CatogeryID" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="usp_ApartmentsSelectByTower_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="String" Name="Desc" Nullable="true" />
+          <Property Type="String" Name="Note" Nullable="true" />
+          <Property Type="Decimal" Name="TowerID" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDType" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="IDNumber" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="OwnershipType" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gender" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <ComplexType Name="usp_Complaints_Result">
+          <Property Type="String" Name="FullName" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="String" Name="flat" Nullable="true" />
+          <Property Type="String" Name="Item" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="AppointmentDateTime" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Status" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="usp_QueryComplaints_Result">
+          <Property Type="String" Name="FullName" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="String" Name="flat" Nullable="true" />
+          <Property Type="String" Name="Item" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="AppointmentDateTime" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Status" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+        </ComplexType>
+        <EntityType Name="Vw_Complaints">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="flat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Item" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="AppointmentDateTime" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="cat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IDNumber" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="OwnershipType" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Gender" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Paint" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="CommonIssue">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Complaints" Relationship="MZ.ComplaintsSystemsModel.FK_Complaints_CommonIssues" FromRole="CommonIssue" ToRole="Complaint" />
+        </EntityType>
+        <Association Name="FK_Complaints_CommonIssues">
+          <End Type="MZ.ComplaintsSystemsModel.CommonIssue" Role="CommonIssue" Multiplicity="0..1" />
+          <End Type="MZ.ComplaintsSystemsModel.Complaint" Role="Complaint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommonIssue">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Complaint">
+              <PropertyRef Name="IssueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Complaints_Complaints">
+          <End Type="MZ.ComplaintsSystemsModel.Complaint" Role="Complaint" Multiplicity="1" />
+          <End Type="MZ.ComplaintsSystemsModel.Complaint" Role="Complaint1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Complaint">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Complaint1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="usp_CommonIssuesInsert_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_CommonIssuesSelect_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_CommonIssuesUpdate_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Name" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_ComplaintsInsert1_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ApartmentId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Lvl1ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="LVL2ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="LVL3ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="AppointmentDateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="CreateDateTime" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Paint" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Status" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="IssueId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="TechName" Nullable="true" />
+          <Property Type="Decimal" Name="UserId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Note" Nullable="true" />
+          <Property Type="String" Name="Subject" Nullable="true" />
+          <Property Type="String" Name="Id_Numer" Nullable="true" />
+          <Property Type="String" Name="Phone" Nullable="true" />
+          <Property Type="String" Name="Cutomer_Name" Nullable="true" />
+          <Property Type="Decimal" Name="Customer_Type" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="usp_ComplaintsSelect1_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ApartmentId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Lvl1ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="LVL2ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="LVL3ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="AppointmentDateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="CreateDateTime" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Paint" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Status" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="IssueId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="TechName" Nullable="true" />
+          <Property Type="Decimal" Name="UserId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Note" Nullable="true" />
+          <Property Type="String" Name="Subject" Nullable="true" />
+          <Property Type="String" Name="Id_Numer" Nullable="true" />
+          <Property Type="String" Name="Phone" Nullable="true" />
+          <Property Type="String" Name="Cutomer_Name" Nullable="true" />
+          <Property Type="Decimal" Name="Customer_Type" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="usp_ComplaintsUpdate1_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ApartmentId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Lvl1ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="LVL2ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="LVL3ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="AppointmentDateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="CreateDateTime" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Paint" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Status" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="IssueId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="TechName" Nullable="true" />
+          <Property Type="Decimal" Name="UserId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Note" Nullable="true" />
+          <Property Type="String" Name="Subject" Nullable="true" />
+          <Property Type="String" Name="Id_Numer" Nullable="true" />
+          <Property Type="String" Name="Phone" Nullable="true" />
+          <Property Type="String" Name="Cutomer_Name" Nullable="true" />
+          <Property Type="Decimal" Name="Customer_Type" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MZComplaintsSystemsModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="MZ.ComplaintsSystemsModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Apartments">
+            <EntityTypeMapping TypeName="MZ.ComplaintsSystemsModel.Apartment">
+              <MappingFragment StoreEntitySet="Apartments">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="TowerID" ColumnName="TowerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="MZ.ComplaintsSystemsModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="MZ.ComplaintsSystemsModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="MZ.ComplaintsSystemsModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="MZ.ComplaintsSystemsModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Catogeries">
+            <EntityTypeMapping TypeName="MZ.ComplaintsSystemsModel.Catogery">
+              <MappingFragment StoreEntitySet="Catogeries">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommonItems">
+            <EntityTypeMapping TypeName="MZ.ComplaintsSystemsModel.CommonItem">
+              <MappingFragment StoreEntitySet="CommonItems">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommonTypes">
+            <EntityTypeMapping TypeName="MZ.ComplaintsSystemsModel.CommonType">
+              <MappingFragment StoreEntitySet="CommonTypes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CatogeryID" ColumnName="CatogeryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Complaints">
+            <EntityTypeMapping TypeName="MZ.ComplaintsSystemsModel.Complaint">
+              <MappingFragment StoreEntitySet="Complaints">
+                <ScalarProperty Name="Customer_Type" ColumnName="Customer_Type" />
+                <ScalarProperty Name="Cutomer_Name" ColumnName="Cutomer_Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Id_Numer" ColumnName="Id_Numer" />
+                <ScalarProperty Name="IssueId" ColumnName="IssueId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ApartmentId" ColumnName="ApartmentId" />
+                <ScalarProperty Name="Lvl1ID" ColumnName="Lvl1ID" />
+                <ScalarProperty Name="LVL2ID" ColumnName="LVL2ID" />
+                <ScalarProperty Name="LVL3ID" ColumnName="LVL3ID" />
+                <ScalarProperty Name="AppointmentDateTime" ColumnName="AppointmentDateTime" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="Paint" ColumnName="Paint" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TechName" ColumnName="TechName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="MZ.ComplaintsSystemsModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Towers">
+            <EntityTypeMapping TypeName="MZ.ComplaintsSystemsModel.Tower">
+              <MappingFragment StoreEntitySet="Towers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="MZ.ComplaintsSystemsModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="usp_ApartmentsDelete" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_ApartmentsDelete" />
+          <FunctionImportMapping FunctionImportName="usp_ApartmentsInsert" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_ApartmentsInsert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_ApartmentsInsert_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="TowerID" ColumnName="TowerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ApartmentsSelect" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_ApartmentsSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_ApartmentsSelect_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="TowerID" ColumnName="TowerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ApartmentsUpdate" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_ApartmentsUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_ApartmentsUpdate_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="TowerID" ColumnName="TowerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CatogeriesDelete" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CatogeriesDelete" />
+          <FunctionImportMapping FunctionImportName="usp_CatogeriesInsert" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CatogeriesInsert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_CatogeriesInsert_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CatogeriesSelect" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CatogeriesSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_CatogeriesSelect_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CatogeriesUpdate" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CatogeriesUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_CatogeriesUpdate_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CommonItemsDelete" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CommonItemsDelete" />
+          <FunctionImportMapping FunctionImportName="usp_CommonItemsInsert" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CommonItemsInsert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_CommonItemsInsert_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CommonItemsSelect" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CommonItemsSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_CommonItemsSelect_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CommonItemsUpdate" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CommonItemsUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_CommonItemsUpdate_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CommonTypesDelete" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CommonTypesDelete" />
+          <FunctionImportMapping FunctionImportName="usp_CommonTypesInsert" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CommonTypesInsert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_CommonTypesInsert_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CatogeryID" ColumnName="CatogeryID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CommonTypesSelect" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CommonTypesSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_CommonTypesSelect_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CatogeryID" ColumnName="CatogeryID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CommonTypesUpdate" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CommonTypesUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_CommonTypesUpdate_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CatogeryID" ColumnName="CatogeryID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CustomersDelete" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CustomersDelete" />
+          <FunctionImportMapping FunctionImportName="usp_CustomersInsert" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CustomersInsert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_CustomersInsert_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IDType" ColumnName="IDType" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="OwnershipType" ColumnName="OwnershipType" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CustomersSelect" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CustomersSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_CustomersSelect_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IDType" ColumnName="IDType" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="OwnershipType" ColumnName="OwnershipType" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CustomersUpdate" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CustomersUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_CustomersUpdate_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IDType" ColumnName="IDType" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="OwnershipType" ColumnName="OwnershipType" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_TowersDelete" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_TowersDelete" />
+          <FunctionImportMapping FunctionImportName="usp_TowersInsert" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_TowersInsert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_TowersInsert_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_TowersSelect" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_TowersSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_TowersSelect_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_TowersUpdate" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_TowersUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_TowersUpdate_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CommonItemsSelectByType" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CommonItemsSelectByType">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_CommonItemsSelectByType_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CommonTypesSelectByCatogeryByCatogery" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CommonTypesSelectByCatogeryByCatogery">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_CommonTypesSelectByCatogeryByCatogery_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CatogeryID" ColumnName="CatogeryID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ApartmentsSelectByTower" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_ApartmentsSelectByTower">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_ApartmentsSelectByTower_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="TowerID" ColumnName="TowerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="MZ.ComplaintsSystemsModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="OwnershipType" ColumnName="OwnershipType" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="IDType" ColumnName="IDType" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_QueryComplaints" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_QueryComplaints">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_QueryComplaints_Result">
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="flat" ColumnName="flat" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="AppointmentDateTime" ColumnName="AppointmentDateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Vw_Complaints">
+            <EntityTypeMapping TypeName="MZ.ComplaintsSystemsModel.Vw_Complaints">
+              <MappingFragment StoreEntitySet="Vw_Complaints">
+                <ScalarProperty Name="Paint" ColumnName="Paint" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="OwnershipType" ColumnName="OwnershipType" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="cat" ColumnName="cat" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AppointmentDateTime" ColumnName="AppointmentDateTime" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="flat" ColumnName="flat" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommonIssues">
+            <EntityTypeMapping TypeName="MZ.ComplaintsSystemsModel.CommonIssue">
+              <MappingFragment StoreEntitySet="CommonIssues">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_CommonIssuesDelete" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CommonIssuesDelete" />
+          <FunctionImportMapping FunctionImportName="usp_CommonIssuesInsert" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CommonIssuesInsert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_CommonIssuesInsert_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CommonIssuesSelect" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CommonIssuesSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_CommonIssuesSelect_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CommonIssuesUpdate" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CommonIssuesUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_CommonIssuesUpdate_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ComplaintsDelete1" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_ComplaintsDelete" />
+          <FunctionImportMapping FunctionImportName="usp_ComplaintsInsert1" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_ComplaintsInsert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_ComplaintsInsert1_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ApartmentId" ColumnName="ApartmentId" />
+                <ScalarProperty Name="Lvl1ID" ColumnName="Lvl1ID" />
+                <ScalarProperty Name="LVL2ID" ColumnName="LVL2ID" />
+                <ScalarProperty Name="LVL3ID" ColumnName="LVL3ID" />
+                <ScalarProperty Name="AppointmentDateTime" ColumnName="AppointmentDateTime" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="Paint" ColumnName="Paint" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IssueId" ColumnName="IssueId" />
+                <ScalarProperty Name="TechName" ColumnName="TechName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Id_Numer" ColumnName="Id_Numer" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Cutomer_Name" ColumnName="Cutomer_Name" />
+                <ScalarProperty Name="Customer_Type" ColumnName="Customer_Type" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ComplaintsSelect1" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_ComplaintsSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_ComplaintsSelect1_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ApartmentId" ColumnName="ApartmentId" />
+                <ScalarProperty Name="Lvl1ID" ColumnName="Lvl1ID" />
+                <ScalarProperty Name="LVL2ID" ColumnName="LVL2ID" />
+                <ScalarProperty Name="LVL3ID" ColumnName="LVL3ID" />
+                <ScalarProperty Name="AppointmentDateTime" ColumnName="AppointmentDateTime" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="Paint" ColumnName="Paint" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IssueId" ColumnName="IssueId" />
+                <ScalarProperty Name="TechName" ColumnName="TechName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Id_Numer" ColumnName="Id_Numer" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Cutomer_Name" ColumnName="Cutomer_Name" />
+                <ScalarProperty Name="Customer_Type" ColumnName="Customer_Type" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ComplaintsUpdate1" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_ComplaintsUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_ComplaintsUpdate1_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ApartmentId" ColumnName="ApartmentId" />
+                <ScalarProperty Name="Lvl1ID" ColumnName="Lvl1ID" />
+                <ScalarProperty Name="LVL2ID" ColumnName="LVL2ID" />
+                <ScalarProperty Name="LVL3ID" ColumnName="LVL3ID" />
+                <ScalarProperty Name="AppointmentDateTime" ColumnName="AppointmentDateTime" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="Paint" ColumnName="Paint" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IssueId" ColumnName="IssueId" />
+                <ScalarProperty Name="TechName" ColumnName="TechName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Id_Numer" ColumnName="Id_Numer" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Cutomer_Name" ColumnName="Cutomer_Name" />
+                <ScalarProperty Name="Customer_Type" ColumnName="Customer_Type" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

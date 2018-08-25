@@ -1,0 +1,275 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="MZ.ComplaintsSystems.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+   
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+       
+        <title style="font-family:Andalus">بلاغات اسكان المعزر</title>
+   
+
+
+
+    <!-- MetisMenu CSS -->
+    <link href="/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="/vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+      <!-- jQuery -->
+    
+    
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="/vendor/raphael/raphael.min.js"></script>
+    <script src="/vendor/morrisjs/morris.min.js"></script>
+    <script src="/data/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/dist/js/sb-admin-2.js"></script>
+   
+</head>
+
+<body>
+   
+    <form runat="server" id="contactFor">
+            <!-- /#wrapper -->
+
+    <!-- jQuery -->
+
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css"/>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"> </script>
+
+    <script src="/vendor/raphael/raphael.min.js"></script>
+    <script src="/vendor/morrisjs/morris.min.js"></script>
+    <script src="/data/morris-data.js"></script>
+        <link href="Content/bootstrap-theme-rtl.min.css" rel="stylesheet" />
+    <!-- Custom Theme JavaScript -->
+        <link href="Content/bootstrap-theme-rtl.css" rel="stylesheet" />
+        <link href="Content/bootstrap-rtl.min.css" rel="stylesheet" />
+        <link href="Content/bootstrap-rtl.css" rel="stylesheet" />
+    <script src="dist/js/sb-admin-2.js"></script>
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+        
+        <!-- Navigation -->
+      
+                      <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="navbar-header">
+                
+                
+                   
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    
+                </button>
+                
+                 <span><a class="navbar-brand" href="Default.aspx">بلاغات اسكان المعزر  </a></span>
+                 
+            </div>
+                          
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-left">
+                <span style="margin-bottom:26px">
+                           <asp:LoginView ID="LoginView2"  runat="server">
+                            <LoggedInTemplate>
+                            <a runat="server" href="#" title="Manage your account">أهلاً,<asp:LoginName ID="LoginName1" runat="server" />!</a>
+                            </LoggedInTemplate>
+                        </asp:LoginView>
+                  
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> ملف المستخدم</a>
+                        </li>
+                        <li><a href="/manage.aspx"><i class="fa fa-gear fa-fw"></i> الاجراءات</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><asp:LinkButton runat="server" ID="lnklogout" OnClick="lnklogout_Click"><i class="fa fa-sign-out fa-fw"></i> تسجيل الخروج</asp:LinkButton>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul></span>
+            </nav>
+        <span>
+         <nav class="panel1 panel-default navbar-fixed-bottom">
+             <center>
+            <label>&copy; 2017 مجمع اسكان المعذر </label>
+                 </center>
+             </nav></span>
+        <asp:LoginView ID="LoginView1" runat="server">
+          <AnonymousTemplate>
+               
+            </AnonymousTemplate>
+            <LoggedInTemplate>
+                  
+               
+            </LoggedInTemplate>
+        
+       <RoleGroups >
+           <asp:RoleGroup Roles="Admin">
+               <ContentTemplate>
+                        <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <center>
+                           <iframe src="http://free.timeanddate.com/clock/i5sb5cc5/n214/szw110/szh110/hocfff/hbw0/cf100/hgr0/fas20/facfff/fdi86/mqc000/mqs2/mql3/mqw4/mqd70/mhc000/mhs2/mhl3/mhw4/mhd70/mmv0/hhs3/hms3/hsc00f" frameborder="0" width="110" height="110"></iframe>
+                            </center>
+                        </li>
+                        <li>
+                            <a href="/"><i class="fa fa-home fa-fw"></i> الرئيسية</a>
+                        </li>
+                        <li>
+                            <a href="/complaints"><i class="fa fa-support fa-fw"></i> البلاغات</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> التقارير<span class="fa arrow"></span></a>
+
+                            <ul class="nav nav-second-level">
+                                
+                                <li>
+                                    <a href="flot.html">Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Morris.js Charts</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        
+                      
+
+                    </ul>
+                </div>
+                            
+                <!-- /.sidebar-collapse -->
+            </div>
+                   </ContentTemplate>
+               </asp:RoleGroup>
+           <asp:RoleGroup Roles="Operator">
+               <ContentTemplate>
+                        <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <center>
+                           <iframe src="http://free.timeanddate.com/clock/i5sb5cc5/n214/szw110/szh110/hocfff/hbw0/cf100/hgr0/fas20/facfff/fdi86/mqc000/mqs2/mql3/mqw4/mqd70/mhc000/mhs2/mhl3/mhw4/mhd70/mmv0/hhs3/hms3/hsc00f" frameborder="0" width="110" height="110"></iframe>
+                            </center>
+                        </li>
+                        <li>
+                            <a href="/"><i class="fa fa-home fa-fw"></i> الرئيسية</a>
+                        </li>
+                        <li>
+                            <a href="/complaints"><i class="fa fa-support fa-fw"></i> البلاغات</a>
+                        </li>
+                        
+                      
+
+                    </ul>
+                </div>
+                            
+                <!-- /.sidebar-collapse -->
+            </div>
+                   </ContentTemplate>
+               </asp:RoleGroup>
+           <asp:RoleGroup Roles="Manager">
+               <ContentTemplate>
+                        <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <center>
+                           <iframe src="http://free.timeanddate.com/clock/i5sb5cc5/n214/szw110/szh110/hocfff/hbw0/cf100/hgr0/fas20/facfff/fdi86/mqc000/mqs2/mql3/mqw4/mqd70/mhc000/mhs2/mhl3/mhw4/mhd70/mmv0/hhs3/hms3/hsc00f" frameborder="0" width="110" height="110"></iframe>
+                            </center>
+                        </li>
+                        
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> التقارير<span class="fa arrow"></span></a>
+
+                            <ul class="nav nav-second-level">
+                                
+                                <li>
+                                    <a href="flot.html">Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Morris.js Charts</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        
+                      
+
+                    </ul>
+                </div>
+                            
+                <!-- /.sidebar-collapse -->
+            </div>
+                   </ContentTemplate>
+               </asp:RoleGroup>
+           </RoleGroups>
+            </asp:LoginView>
+            <!-- /.navbar-top-links -->
+       
+               
+                    
+            
+            <!-- /.navbar-static-side -->
+                   
+         <div id="wrapper">
+             <div id="page-wrapper" style="background-position: left center; background-image: url('Content/Images/Background.jpg'); background-repeat: no-repeat; background-attachment: scroll;" >
+<asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+                    </div>
+          </div>
+    </form>
+
+</body>
+</html>

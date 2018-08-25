@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CC7E896C-E3C4-403C-8ABF-600C7C514E53}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MZ.DB_Model</RootNamespace>
+    <AssemblyName>MZ.DB-Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Apartment.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="aspnet_Applications.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="aspnet_Paths.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="aspnet_SchemaVersions.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="aspnet_WebEvent_Events.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Catogery.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommonIssue.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommonItem.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommonType.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Complaint.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MZDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MZDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MZDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MZDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MZDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegularMaintenance_Items.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RegularMaintence.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Status.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="technician.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tower.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ApartmentsInsert_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ApartmentsSelectByTower2_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ApartmentsSelectByTower_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ApartmentsSelect_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ApartmentsUpdate_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CatogeriesInsert_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CatogeriesSelect_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CatogeriesUpdate_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CommonIssuesInsert_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CommonIssuesSelect_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CommonIssuesUpdate_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CommonItemsInsert_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CommonItemsSelectByType_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CommonItemsSelect_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CommonItemsUpdate_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CommonTypesInsert_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CommonTypesSelectByCatogeryByCatogery_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CommonTypesSelect_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CommonTypesUpdate_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ComplaintsInsert_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ComplaintsSelect_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_ComplaintsUpdate_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CustomersInsert_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CustomersSelect_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CustomersUpdate_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_QueryComplaints_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_RegularMaintenance_ItemsInsert_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_RegularMaintenance_ItemsSelect_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_RegularMaintenance_ItemsUpdate_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_RegularMaintenceInsertSelect_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_RegularMaintenceInsert_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_RegularMaintenceSelect_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_RegularMaintenceUpdate_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_techniciansInsert_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_techniciansSelect_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_techniciansUpdate_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_TowersInsert_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_TowersSelect_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_TowersUpdate_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_Complaints.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vw_RegularMaintenance.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="MZDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MZDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="MZDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MZDB.edmx</DependentUpon>
+      <LastGenOutput>MZDB.Context.cs</LastGenOutput>
+    </None>
+    <None Include="MZDB.edmx.diagram">
+      <DependentUpon>MZDB.edmx</DependentUpon>
+    </None>
+    <None Include="MZDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MZDB.edmx</DependentUpon>
+      <LastGenOutput>MZDB.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

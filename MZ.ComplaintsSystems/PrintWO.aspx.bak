@@ -1,0 +1,136 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PrintWO.aspx.cs" Inherits="MZ.ComplaintsSystems.PrintWO" %>
+
+<%@ Register Assembly="DevExpress.Web.v14.2, Version=14.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+<%@ Register assembly="DevExpress.Web.ASPxScheduler.v14.2, Version=14.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxScheduler" tagprefix="dxwschs" %>
+<%@ Register assembly="DevExpress.XtraScheduler.v14.2.Core, Version=14.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.XtraScheduler" tagprefix="cc1" %>
+
+<%@ Register assembly="DevExpress.Web.v14.2, Version=14.2.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Data.Linq" tagprefix="dx" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script src="/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css"/>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"> </script>
+
+    <script src="/vendor/raphael/raphael.min.js"></script>
+    <script src="/vendor/morrisjs/morris.min.js"></script>
+    <script src="/data/morris-data.js"></script>
+        <link href="Content/bootstrap-theme-rtl.min.css" rel="stylesheet" />
+    <!-- Custom Theme JavaScript -->
+        <link href="Content/bootstrap-theme-rtl.css" rel="stylesheet" />
+        <link href="Content/bootstrap-rtl.min.css" rel="stylesheet" />
+        <link href="Content/bootstrap-rtl.css" rel="stylesheet" />
+    <script src="dist/js/sb-admin-2.js"></script>
+    <style type="text/css">
+        .auto-style1 {
+            width: 25%;
+        }
+        header {
+	display: table-header-group;
+	position: relative;
+    
+	top: 0px;
+}
+        footer {
+	display: table-footer-group;
+	position: fixed;
+	bottom: 0px;
+	page-break-after: always;
+}
+        .content-body {
+	vertical-align: top;
+}
+        header img, footer img {
+	width: 100%;
+    height:25%
+}
+    </style>
+
+</head>
+<body dir="rtl" onload="window.print()">
+     <form id="form1" runat="server">
+      
+    <div class="col-lg-12">
+         <div class="row">
+    <header class="header">
+        <img  src="Content/Images/header.jpg"/>
+    </header>
+             </div>
+    <div class="row"><strong><h5>معلومات البلاغ</h5></strong> </div>
+    <div class="row" >
+    <table class="table table-bordered">
+        <tr>
+            <th class="auto-style1">رقم البرج</th>
+            <td><asp:Label runat="server" id="TowerId"></asp:Label></td>
+           <th class="auto-style1">رقم الشقة</th>
+            <td ><asp:Label runat="server" id="ApID"></asp:Label></td>
+        </tr>
+        <tr>
+            <th class="auto-style1">تصنيف البلاغ الرئيسي</th>
+            <td><asp:Label runat="server" id="lvl1"></asp:Label></td>
+           <th class="auto-style1">تصنيف البلاغ الفرعي</th>
+            <td><asp:Label runat="server" id="lvl2"></asp:Label></td>
+           
+        </tr>
+        <tr>
+            <th class="auto-style1">تصنيف البلاغ الدقيق</th>
+            <td><asp:Label runat="server" id="lvl3"></asp:Label></td>
+            <th class="auto-style1">وقت الزيارة</th>
+            <td><asp:Label runat="server" id="visittime"></asp:Label></td>
+            
+        </tr>
+        <tr>
+            <th class="auto-style1">موضوع البلاغ</th>
+            <td colspan="3" ><asp:Label runat="server" id="subject"></asp:Label></td>
+        </tr>
+        
+        <tr>
+            <th class="auto-style1">ملاحظات</th>
+            <td colspan="3"><span><dx:ASPxTextBox runat="server" id="memo" Rows="3" columns="20" TextMode="MultiLine" Width="100%" RightToLeft="True" >
+                <Border BorderStyle="None" />
+
+                </dx:ASPxTextBox></td></span>
+        </tr>
+        
+       
+        
+    </table>
+        </div>
+        <div class="row">معلومات العميل </div>
+    <div class="row" >
+    <table class="table table-bordered">
+        <tr>
+            <th class="auto-style1">رقم الهوية</th>
+            <td><asp:Label runat="server" id="Idnumer"></asp:Label></td>
+           <th class="auto-style1">اسم العميل</th>
+            <td ><asp:Label runat="server" id="name"></asp:Label></td>
+        </tr>
+        <tr>
+            <th class="auto-style1">رقم التلفون</th>
+            <td><asp:Label runat="server" id="phone"></asp:Label></td>
+           <th class="auto-style1">تصنيف العميل</th>
+            <td><asp:Label runat="server" id="customertype"></asp:Label></td>
+           
+        </tr>
+       
+        
+    </table>
+        </div>
+        <div class="row">توقيع العميل:</div>
+        
+         <div>
+             <center>
+    <footer class="footer" style="text-align:center">
+        <p>المملكة العربية السعودية - الرياض - هاتف  :4620503 - 4620516 فاكس :4622217</p>
+        <p>Kingdom of Saudi Arabia - Riyadh - Tel.:4620503 - 4620516 -Fax:4622217</p>
+    </footer>
+                 </center>
+       </div>
+         </form>
+</body>
+</html>
