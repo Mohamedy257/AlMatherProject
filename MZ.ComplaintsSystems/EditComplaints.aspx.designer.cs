@@ -31,6 +31,15 @@ namespace MZ.ComplaintsSystems {
         protected global::System.Web.UI.WebControls.Label lbltxtresult;
         
         /// <summary>
+        /// txtID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox txtID;
+        
+        /// <summary>
         /// txtSearch control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace MZ.ComplaintsSystems {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtphone;
+        
+        /// <summary>
+        /// txtCreationDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox txtCreationDate;
         
         /// <summary>
         /// txtcustomername control.

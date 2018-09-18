@@ -1,9 +1,6 @@
-﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="MZ.ComplaintsSystems.Account.Register" %>
+﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Shared/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="MZ.ComplaintsSystems.Account.Register" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-   
-   
-
     <div class="col-lg-12">
         <div class="row-title">
         <div class="col-lg-12">
@@ -55,6 +52,4 @@
           </div>
               </div></div>
           </div>
-
-    
 </asp:Content>

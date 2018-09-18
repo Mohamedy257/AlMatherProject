@@ -10,30 +10,33 @@ using Novacode;
 using System.IO;
 using DevExpress.Web;
 using Microsoft.AspNet.Identity;
+using MZ.ComplaintsSystems.Util;
+using System.Transactions;
+using System.Data.Entity.Core.Objects;
+using MZ.ComplaintsSystems.Models;
+using System.Configuration;
 
 namespace MZ.ComplaintsSystems
 {
     public partial class ComplaintFinalization : System.Web.UI.Page
     {
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                //DisableEnableControls(false);
                 FillDropdownLists();
-                string  x = Request.QueryString["Id"].ToString();
+                string x = Request.QueryString["Id"].ToString();
                 FillComplaintData(Convert.ToInt32(x));
-               
             }
-           
-           
+
+
         }
+
         public void CreateSampleDocument2(int Id)
         {
             using (Entities1 db = new Entities1())
             {
-
                 Vw_Complaints cm = db.Vw_Complaints.Where(x => x.ID == Id).FirstOrDefault();
                 Apartment ap = db.Apartments.Where(x => x.Name == cm.flat).FirstOrDefault();
                 Tower tw = db.Towers.Where(x => x.Name == cm.Name).FirstOrDefault();
@@ -64,7 +67,6 @@ namespace MZ.ComplaintsSystems
                 p7.Append("............................................................................................................................");
                 p7.Append("............................................................................................................................");
                 p7.Append("............................................................................................................................");
-
                 Paragraph p4 = document.InsertParagraph();
                 p4.Direction = Novacode.Direction.RightToLeft;
                 p4.Append("شاكرين حسن تعاونكم");
@@ -73,8 +75,6 @@ namespace MZ.ComplaintsSystems
                 p4.SpacingAfter(20);
                 Paragraph p5 = document.InsertParagraph();
                 p5.Append("المعذر اسكان  مجمع ادارة");
-                //p5.Alignment = Alignment.left;
-                //p5.Direction = Novacode.Direction.RightToLeft;
                 p5.Bold();
                 Paragraph p6 = document.InsertParagraph();
                 p6.LineSpacingBefore = 318;
@@ -88,19 +88,19 @@ namespace MZ.ComplaintsSystems
                 Context.Response.AppendHeader("Content-Length", file.Length.ToString());
                 Context.Response.WriteFile(file.FullName);
                 Context.Response.End();
-                //System.Diagnostics.Process.Start("WordAlignment.docx");
             }
         }
+
         public void CreateSampleDocument(int Id)
         {
             using (Entities1 db = new Entities1())
             {
-              
+
                 Vw_Complaints cm = db.Vw_Complaints.Where(x => x.ID == Id).FirstOrDefault();
                 Apartment ap = db.Apartments.Where(x => x.Name == cm.flat).FirstOrDefault();
                 Tower tw = db.Towers.Where(x => x.Name == cm.Name).FirstOrDefault();
                 string body = string.Format("نشعركم بوجود تسرب مياة صادر من شقتكم علي جاركم شقة رقم ({0}) نامل اصلاح التسرب في اسرع وقت ممكن او الاتصال علي قسم الصيانة تلفون رقم (4620591) ليتمكن فني الصيانة من الكشف عن مصدر التسرب واصلاحة ووقف الضرر علي جاركم والحفاظ علي سلامة المبني. ", cm.OtherApartment);
-                string subject = string.Format("المحترم / ساكن الشقة رقم ({0}) برج رقم                 ({1}) المحترم",ap.ID, tw.ID);
+                string subject = string.Format("المحترم / ساكن الشقة رقم ({0}) برج رقم                 ({1}) المحترم", ap.ID, tw.ID);
                 string footer = string.Format("صورة مع التحية شقة رقم ({0})", cm.OtherApartment);
                 DocX document = DocX.Load(Server.MapPath("/Template.docx"));
                 Paragraph p0 = document.InsertParagraph();
@@ -118,7 +118,7 @@ namespace MZ.ComplaintsSystems
                 Paragraph p3 = document.InsertParagraph();
                 p3.Direction = Novacode.Direction.RightToLeft;
                 p3.Append(body);
-          
+
                 Paragraph p4 = document.InsertParagraph();
                 p4.Direction = Novacode.Direction.RightToLeft;
                 p4.Append("شاكرين حسن تعاونكم");
@@ -133,7 +133,7 @@ namespace MZ.ComplaintsSystems
                 Paragraph p6 = document.InsertParagraph();
                 p6.Direction = Novacode.Direction.RightToLeft;
                 p6.Append(footer);
-                document.SaveAs(Server.MapPath("/Docs/"+cm.flat.Trim() +"."+ Convert.ToDateTime(cm.CreateDateTime).ToString("yyyyyMMdd") + ".docx"));
+                document.SaveAs(Server.MapPath("/Docs/" + cm.flat.Trim() + "." + Convert.ToDateTime(cm.CreateDateTime).ToString("yyyyyMMdd") + ".docx"));
                 Context.Response.Clear();
                 FileInfo file = new FileInfo(Server.MapPath("/Docs/" + cm.flat.Trim() + "." + Convert.ToDateTime(cm.CreateDateTime).ToString("yyyyyMMdd") + ".docx"));
                 Context.Response.ContentType = "Application/msword";
@@ -144,6 +144,7 @@ namespace MZ.ComplaintsSystems
             }
 
         }
+
         private void FillCommonItems(string name)
         {
             using (Entities1 db = new Entities1())
@@ -155,19 +156,21 @@ namespace MZ.ComplaintsSystems
                 DataBind();
             }
         }
-        private void FillApartments(string name,string tower)
+
+        private void FillApartments(string name, string tower)
         {
             using (Entities1 db = new Entities1())
             {
                 Tower tw = db.Towers.Where(x => x.Name == tower).FirstOrDefault();
-                Apartment ap = db.Apartments.Where(x => x.Name == name && x.TowerID==tw.ID ).FirstOrDefault();
-               
+                Apartment ap = db.Apartments.Where(x => x.Name == name && x.TowerID == tw.ID).FirstOrDefault();
+
                 drpapartmentnumber.DataSource = db.usp_ApartmentsSelectByTower(tw.ID).ToList();
                 drpapartmentnumber.ValueField = "ID";
                 drpapartmentnumber.TextField = "Name";
                 DataBind();
             }
         }
+
         private void FillCommonTypes(string name)
         {
             using (Entities1 db = new Entities1())
@@ -179,25 +182,29 @@ namespace MZ.ComplaintsSystems
                 DataBind();
             }
         }
-        private void FillComplaintData(int Id) {
+
+        private void FillComplaintData(int Id)
+        {
             using (Entities1 db = new Entities1())
             {
-                
-                 Vw_Complaints cm = db.Vw_Complaints.Where(x => x.ID == Id).FirstOrDefault();
-                 FillApartments(cm.flat,cm.Name);
-                 FillCommonItems(cm.type);
-                 FillCommonTypes(cm.cat);
-                 txtSearch.Text = cm.Id_Numer;
+
+                Vw_Complaints cm = db.Vw_Complaints.Where(x => x.ID == Id).FirstOrDefault();
+                FillApartments(cm.flat, cm.Name);
+                FillCommonItems(cm.type);
+                FillCommonTypes(cm.cat);
+                txtSearch.Text = cm.Id_Numer;
                 txtphone.Text = cm.Phone;
                 txtcustomername.Text = cm.FullName;
                 drpownertype.Text = cm.type;
                 drpissue.Text = cm.IssueId;
-                //btnclear.NavigateUrl = "/initialLetter.aspx?Id=" + cm.ID;
                 btnprint.NavigateUrl = "PrintWO.aspx?Id=" + cm.ID;
                 drpapartmentnumber.Text = cm.flat;
                 drptower.Text = cm.Name;
                 drplvl1.Text = cm.cat;
+                txttechname.Text = cm.TechName;
                 drplvl2.Text = cm.type;
+                txtID.Text = "926/" + cm.ID.ToString("0000000");
+                txtCreationDate.Text = cm.CreateDateTime.ToString();
                 drplvl3.Text = cm.Item;
                 drpotheap.Text = cm.OtherApartment;
                 if (!string.IsNullOrEmpty(cm.Other))
@@ -212,16 +219,16 @@ namespace MZ.ComplaintsSystems
                 {
                     btnsumnit.Visible = true;
                     btnedit.Visible = true;
-                    
+
                 }
                 else if (cm.Status == 3)
                 {
                     btnsumnit.Visible = false;
                     btnedit.Visible = false;
-                   
+
                 }
                 txtfixdatetime.Text = cm.AppointmentDateTime.ToString();
-                memonotes.Text =cm.Note ;
+                memonotes.Text = cm.Note;
                 txtsubject.Text = cm.Subject;
                 drpownertype.SelectedValue = cm.Customer_Type.ToString();
                 drppaint.SelectedIndex = Convert.ToInt32(cm.Paint);
@@ -237,23 +244,22 @@ namespace MZ.ComplaintsSystems
                     lblothertxt.ClientVisible = false;
                 }
             }
-                //drpownertype.SelectedIndex = Convert.ToInt32(cm.OwnershipType);
+        }
 
-            }
-        
-        private void FillDropdownLists() {
+        private void FillDropdownLists()
+        {
             using (Entities1 db = new Entities1())
             {
                 drplvl1.DataSource = db.usp_CatogeriesSelect(null).ToList();
                 drplvl1.ValueField = "ID";
                 drplvl1.TextField = "Name";
-               
+
                 //drplvl1.append = true;
                 //--------------------
                 drptower.DataSource = db.usp_TowersSelect(null).ToList();
                 drptower.TextField = "Name";
                 drptower.ValueField = "ID";
-                
+
                 //----------------------
                 drpissue.DataSource = db.usp_CommonIssuesSelect(null);
                 drpissue.TextField = "Name";
@@ -263,12 +269,14 @@ namespace MZ.ComplaintsSystems
                 listBox.DataSource = db.usp_ApartmentsSelectByTower(1);
                 listBox.TextField = "Name";
                 listBox.ValueField = "APID";
-               // listBox.Items.("select All",-1);
+                // listBox.Items.("select All",-1);
 
                 DataBind();
             }
         }
-        private void FillCommonTypes(int Id) {
+
+        private void FillCommonTypes(int Id)
+        {
             using (Entities1 db = new Entities1())
             {
                 drplvl2.DataSource = db.usp_CommonTypesSelectByCatogeryByCatogery(Id).ToList();
@@ -277,6 +285,7 @@ namespace MZ.ComplaintsSystems
                 DataBind();
             }
         }
+
         private void FillCommonItems(int Id)
         {
             using (Entities1 db = new Entities1())
@@ -287,6 +296,7 @@ namespace MZ.ComplaintsSystems
                 DataBind();
             }
         }
+
         private void FillApartments(int Id)
         {
             using (Entities1 db = new Entities1())
@@ -297,47 +307,63 @@ namespace MZ.ComplaintsSystems
                 DataBind();
             }
         }
-        
 
         protected void btnsbmit_Click(object sender, EventArgs e)
         {
-          
-            using (Entities1 db = new Entities1())
+            usp_NotificationMessagesInsertProcedure_Result notificationRecord = null;
+            usp_ComplaintsUpdateProcedure_Result complaintResult = null;
+            using (TransactionScope tx = new TransactionScope())
             {
-                int id=Convert.ToInt32(Request.QueryString["Id"].ToString());
-                string userId = User.Identity.GetUserId().ToString();
-                db.usp_ComplaintsUpdate(
-                        id,
-                        Convert.ToInt32(drpapartmentnumber.Value),
-                        Convert.ToInt32(drplvl1.Value),
-                        Convert.ToInt32(drplvl2.Value),
-                        Convert.ToInt32(drplvl3.SelectedItem.Value),
-                        Convert.ToDateTime(txtfixdatetime.Text),
-                        DateTime.Now,
-                        Convert.ToInt32(drppaint.SelectedValue),
-                        3,
-                        Convert.ToInt32(drpissue.Value),
-                        txttechname.Text,
-                        userId,
-                        memonotes.Text,
-                        txtsubject.Text
-                        ,txtSearch.Text
-                        ,txtphone.Text
-                        ,txtcustomername.Text
-                        ,Convert.ToInt32(drpownertype.SelectedItem.Value)
-                        ,txtother.Text
-                        ,drpotheap.Text
-                    );
-                //Response.Redirect(Request.RawUrl);
-            resultmessage.Attributes["class"] = "alert-success";
-            lbltxtresult.Text = "تم تحويل البلاغ الي عمليات ما بعد الكشف";
-            //Clear();
-            btnedit.Visible = false;
-            //btnsumnit.Visible = false;
-           
-            DataBind();
-          }
+                using (Entities1 db = new Entities1())
+                {
+                    int id = Convert.ToInt32(Request.QueryString["Id"].ToString());
+                    string userId = User.Identity.GetUserId().ToString();
+                    var x =
+                    db.usp_ComplaintsUpdateProcedure(
+                            id,
+                            Convert.ToInt32(drpapartmentnumber.Value),
+                            Convert.ToInt32(drplvl1.Value),
+                            Convert.ToInt32(drplvl2.Value),
+                            Convert.ToInt32(drplvl3.SelectedItem.Value),
+                            Convert.ToDateTime(txtfixdatetime.Text),
+                            DateTime.Now,
+                            Convert.ToInt32(drppaint.SelectedValue),
+                            (int)ComplaintStatusEnum.Completed,
+                            Convert.ToInt32(drpissue.Value),
+                            txttechname.Text,
+                            userId,
+                            memonotes.Text,
+                            txtsubject.Text
+                            , txtSearch.Text
+                            , txtphone.Text
+                            , txtcustomername.Text
+                            , Convert.ToInt32(drpownertype.SelectedItem.Value)
+                            , txtother.Text
+                            , drpotheap.Text
+                        );
+                    complaintResult = x.FirstOrDefault();
+                    resultmessage.Attributes["class"] = "alert-success";
+                    lbltxtresult.Text = "تم الانتهاء من العمل في البلاغ";
+                    btnedit.Visible = false;
+                    DataBind();
+                    string messageText = string.Format(Utilities.GetDescription(NotificationMessagesEnum.ComplaintClosure), complaintResult.ID.ToString("9260000000"), ConfigurationManager.AppSettings["WebServerIP"] + "/Evaluation/TechnictionEvaluation?ID=" + complaintResult.ID);
+                    ObjectResult<usp_NotificationMessagesInsertProcedure_Result> y =
+                    db.usp_NotificationMessagesInsertProcedure(
+                       "966" + complaintResult.Phone.TrimStart('0'),
+                        complaintResult.ID.ToString("9260000000"),
+                        messageText,
+                         null,
+                         1,
+                         1,
+                         DateTime.Now
+                        );
+                    notificationRecord = y.FirstOrDefault();
+                }
+                tx.Complete();
+            }
+            Utilities.SendSMS(notificationRecord.MobileNumber, notificationRecord.MessageText, notificationRecord.ID);
         }
+
         protected void btnedit_Click(object sender, EventArgs e)
         {
 
@@ -345,7 +371,7 @@ namespace MZ.ComplaintsSystems
             {
                 int id = Convert.ToInt32(Request.QueryString["Id"].ToString());
                 string userId = User.Identity.GetUserId();
-                db.usp_ComplaintsUpdate(
+                db.usp_ComplaintsUpdateProcedure(
                         id,
                         Convert.ToInt32(drpapartmentnumber.Value),
                         Convert.ToInt32(drplvl1.Value),
@@ -354,7 +380,7 @@ namespace MZ.ComplaintsSystems
                         Convert.ToDateTime(txtfixdatetime.Text),
                         DateTime.Now,
                         Convert.ToInt32(drppaint.SelectedValue),
-                        2,
+                        (int)ComplaintStatusEnum.Investigation,
                         Convert.ToInt32(drpissue.Value),
                         txttechname.Text,
                         userId,
@@ -367,13 +393,12 @@ namespace MZ.ComplaintsSystems
                         , txtother.Text
                         , drpotheap.Text
                     );
-                //Response.Redirect(Request.RawUrl);
                 resultmessage.Attributes["class"] = "alert-success";
                 lbltxtresult.Text = "تم تعديل البلاغ بنجاح";
-                //Clear();
                 DataBind();
             }
         }
+
         protected void btnclose_Click(object sender, EventArgs e)
         {
 
@@ -381,7 +406,7 @@ namespace MZ.ComplaintsSystems
             {
                 int id = Convert.ToInt32(Request.QueryString["Id"].ToString());
                 string userId = User.Identity.GetUserId();
-                db.usp_ComplaintsUpdate(
+                db.usp_ComplaintsUpdateProcedure(
                         id,
                         Convert.ToInt32(drpapartmentnumber.Value),
                         Convert.ToInt32(drplvl1.Value),
@@ -390,7 +415,7 @@ namespace MZ.ComplaintsSystems
                         Convert.ToDateTime(txtfixdatetime.Text),
                         DateTime.Now,
                         null,
-                        3,
+                        (int)ComplaintStatusEnum.Completed,
                         null,
                         txttechname.Text,
                         userId,
@@ -403,22 +428,22 @@ namespace MZ.ComplaintsSystems
                         , txtother.Text
                         , drpotheap.Text
                     );
-                //Response.Redirect(Request.RawUrl);
                 resultmessage.Attributes["class"] = "alert-success";
                 lbltxtresult.Text = "تم اقفال البلاغ بنجاح";
-                //Clear();
                 btnedit.Visible = false;
                 btnsumnit.Visible = false;
                 DataBind();
             }
         }
+
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
-            
-            if (e.Parameter == "lvl1") {
+
+            if (e.Parameter == "lvl1")
+            {
                 FillCommonTypes(Convert.ToInt32(drplvl1.Value));
             }
-           
+
         }
 
         protected void drplvl2_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
@@ -436,24 +461,23 @@ namespace MZ.ComplaintsSystems
             FillApartments(Convert.ToInt32(e.Parameter));
         }
 
-
-        private void DisableEnableControls(bool flag){
+        private void DisableEnableControls(bool flag)
+        {
             drpapartmentnumber.Enabled = flag;
             drptower.Enabled = flag;
             drplvl1.Enabled = flag;
             drplvl2.Enabled = flag;
             drplvl3.Enabled = flag;
             txtfixdatetime.Enabled = flag;
-            //drppaint.Enabled = flag;
             memonotes.Enabled = flag;
             txtsubject.Enabled = flag;
         }
+
         private void Clear()
         {
             txtSearch.Text = "";
             txtphone.Text = "";
             txtcustomername.Text = "";
-            //drpgender.SelectedIndex = -1;
             drpownertype.SelectedIndex = -1;
             drpapartmentnumber.Text = "";
             drptower.SelectedIndex = -1;
@@ -461,19 +485,14 @@ namespace MZ.ComplaintsSystems
             drplvl2.SelectedIndex = -1;
             drplvl3.SelectedIndex = -1;
             txtfixdatetime.Text = "";
-            //drppaint.SelectedIndex = -1;
             memonotes.Text = "";
             txtsubject.Text = "";
         }
 
-       
-        
         protected void btnclear_Click(object sender, EventArgs e)
         {
             CreateSampleDocument2(Convert.ToInt32(Request.QueryString["Id"].ToString()));
         }
-
-      
     }
 }
-    
+

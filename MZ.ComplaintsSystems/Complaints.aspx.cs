@@ -7,38 +7,47 @@ using System.Web.UI.WebControls;
 using MZ.DB_Model;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity.Core.Objects;
+using MZ.ComplaintsSystems.Util;
+using System.Transactions;
+using MZ.ComplaintsSystems.Models;
+
 namespace MZ.ComplaintsSystems
 {
     public partial class Complaints : System.Web.UI.Page
     {
+        public string NotificationMessageEnum { get; private set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-                //DisableEnableControls(false);
-                FillDropdownLists();
+                if (!IsPostBack)
+                {
+                    FillDropdownLists();
+                }
+            }
+            catch (Exception exception)
+            {
+                Log.Error(exception.StackTrace);
             }
         }
 
-        private void FillDropdownLists() {
+        private void FillDropdownLists()
+        {
             using (Entities1 db = new Entities1())
             {
                 drplvl1.DataSource = db.usp_CatogeriesSelect(null).ToList();
                 drplvl1.ValueField = "ID";
                 drplvl1.TextField = "Name";
-               
-                //drplvl1.append = true;
-                //--------------------
                 drptower.DataSource = db.usp_TowersSelect(null).ToList();
                 drptower.TextField = "Name";
                 drptower.ValueField = "ID";
-                
-                //----------------------
-                
                 DataBind();
             }
         }
-        private void FillCommonTypes(int Id) {
+        private void FillCommonTypes(int Id)
+        {
             using (Entities1 db = new Entities1())
             {
                 drplvl2.DataSource = db.usp_CommonTypesSelectByCatogeryByCatogery(Id).ToList();
@@ -67,55 +76,84 @@ namespace MZ.ComplaintsSystems
                 DataBind();
             }
         }
-        
 
         protected void btnsbmit_Click(object sender, EventArgs e)
         {
-          
-            using (Entities1 db = new Entities1())
+            try
             {
-               System.Data.Entity.Core.Objects.ObjectResult<usp_ComplaintsInsert_Result> x=
-                db.usp_ComplaintsInsert(
-                        Convert.ToInt16(drpapartmentnumber.Value),
-                        Convert.ToInt16(drplvl1.Value),
-                        Convert.ToInt16(drplvl2.Value),
-                        Convert.ToInt16(drplvl3.SelectedItem.Value),
-                        Convert.ToDateTime(txtfixdatetime.Text),
-                        DateTime.Now,
-                        null,
-                        //Convert.ToInt16(drppaint.SelectedItem.Value),
-                        1, 
-                        null,
-                        "",
-                        User.Identity.GetUserId(),
-                        memonotes.Text,
-                        txtsubject.Text
-                        ,txtSearch.Text
-                        , txtphone.Text
-                        , txtcustomername.Text
-                        , Convert.ToInt16(drpownertype.SelectedItem.Value)
-                        ,txtother.Text
-                    );
+                usp_NotificationMessagesInsertProcedure_Result notificationRecord = null;
+                usp_ComplaintsInsert_Result complaintResult = null;
+                using (TransactionScope tx = new TransactionScope())
+                {
+                    using (Entities1 db = new Entities1())
+                    {
+                        ObjectResult<usp_ComplaintsInsert_Result> x =
+                         db.usp_ComplaintsInsert(
+                                 Convert.ToInt16(drpapartmentnumber.Value),
+                                 Convert.ToInt16(drplvl1.Value),
+                                 Convert.ToInt16(drplvl2.Value),
+                                 Convert.ToInt16(drplvl3.SelectedItem.Value),
+                                 Convert.ToDateTime(txtfixdatetime.Text),
+                                 DateTime.Now,
+                                 null,
+                                 (int)ComplaintStatusEnum.Created,
+                                 null,
+                                 null,
+                                 User.Identity.GetUserId(),
+                                 memonotes.Text,
+                                 txtsubject.Text
+                                 , txtSearch.Text
+                                 , txtphone.Text
+                                 , txtcustomername.Text
+                                 , Convert.ToInt16(drpownertype.SelectedItem.Value)
+                                 , txtother.Text
+                             );
 
-               usp_ComplaintsInsert_Result co = x.FirstOrDefault();
+                        complaintResult = x.FirstOrDefault();
 
-               btnprint.CommandArgument = co.ID.ToString(); 
-                btnnew.Visible = true;
-                btnprint.Visible = true;
-                btnsumnit.Visible = false;
-            resultmessage.Attributes["class"] = "alert-success";
-            lbltxtresult.Text = "تم اضافة البلاغ بنجاح";
-            //Clear();
-          }
+                        btnprint.CommandArgument = complaintResult.ID.ToString();
+                        btnnew.Visible = true;
+                        btnprint.Visible = true;
+                        btnsumnit.Visible = false;
+                        resultmessage.Attributes["class"] = "alert-success";
+                        displayID.Value = "true";
+                        txtID.Text = "926/" + complaintResult.ID.ToString("0000000");
+                        txtCreationDate.Text = complaintResult.CreateDateTime.ToString();
+                        lbltxtresult.Text = "تم اضافة البلاغ بنجاح";
+                        string messageText = string.Format(Utilities.GetDescription(NotificationMessagesEnum.ComplaintCreationSMS), complaintResult.ID.ToString("9260000000"), complaintResult.CreateDateTime.Value.ToString("dd/MM/yyyy"));
+                        ObjectResult<usp_NotificationMessagesInsertProcedure_Result> y =
+                        db.usp_NotificationMessagesInsertProcedure(
+                           "966" + complaintResult.Phone.TrimStart('0'),
+                            complaintResult.ID.ToString("9260000000"),
+                            messageText,
+                             null,
+                             1,
+                             1,
+                             DateTime.Now
+                            );
+                        notificationRecord = y.FirstOrDefault();
+
+
+                    }
+                    tx.Complete();
+                }
+                string message = string.Format(Utilities.GetDescription(NotificationMessagesEnum.ComplaintCreationSMS), complaintResult.ID.ToString("9260000000"), complaintResult.CreateDateTime.Value.ToString("dd/MM/yyyy"));
+                Utilities.SendSMS(notificationRecord.MobileNumber, message, notificationRecord.ID);
+            }
+            catch (Exception exception)
+            {
+                Log.Error(exception.StackTrace);
+                throw new Exception("خطاء اثناء تنفيذ العملية !");
+            }
+
         }
 
         protected void ASPxCallbackPanel1_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
-            
-            if (e.Parameter == "lvl1") {
+            if (e.Parameter == "lvl1")
+            {
                 FillCommonTypes(Convert.ToInt16(drplvl1.Value));
             }
-           
         }
 
         protected void drplvl2_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
@@ -152,14 +190,14 @@ namespace MZ.ComplaintsSystems
             }
 
         }
-        private void DisableEnableControls(bool flag){
+        private void DisableEnableControls(bool flag)
+        {
             drpapartmentnumber.Enabled = flag;
             drptower.Enabled = flag;
             drplvl1.Enabled = flag;
             drplvl2.Enabled = flag;
             drplvl3.Enabled = flag;
             txtfixdatetime.Enabled = flag;
-            //drppaint.Enabled = flag;
             memonotes.Enabled = flag;
             txtsubject.Enabled = flag;
         }
@@ -168,7 +206,6 @@ namespace MZ.ComplaintsSystems
             txtSearch.Text = "";
             txtphone.Text = "";
             txtcustomername.Text = "";
-            //drpgender.SelectedIndex = -1;
             drpownertype.SelectedIndex = -1;
             drpapartmentnumber.Text = "";
             drptower.SelectedIndex = -1;
@@ -176,7 +213,6 @@ namespace MZ.ComplaintsSystems
             drplvl2.SelectedIndex = -1;
             drplvl3.SelectedIndex = -1;
             txtfixdatetime.Text = "";
-            //drppaint.SelectedIndex = -1;
             memonotes.Text = "";
             txtsubject.Text = "";
         }
@@ -184,7 +220,6 @@ namespace MZ.ComplaintsSystems
         protected void btnprint_Click(object sender, EventArgs e)
         {
             Response.Write("<script>window.open ('PrintWO.aspx?Id=" + btnprint.CommandArgument + "','_blank');</script>");
-            //Response.Redirect("");
         }
 
         protected void btnnew_Click(object sender, EventArgs e)
@@ -195,6 +230,6 @@ namespace MZ.ComplaintsSystems
             btnnew.Visible = false;
         }
 
-      
+
     }
 }

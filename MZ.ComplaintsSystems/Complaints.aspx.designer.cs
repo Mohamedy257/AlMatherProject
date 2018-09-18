@@ -31,6 +31,24 @@ namespace MZ.ComplaintsSystems {
         protected global::System.Web.UI.WebControls.Label lbltxtresult;
         
         /// <summary>
+        /// txtID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox txtID;
+        
+        /// <summary>
+        /// displayID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField displayID;
+        
+        /// <summary>
         /// drptower control.
         /// </summary>
         /// <remarks>
@@ -65,6 +83,15 @@ namespace MZ.ComplaintsSystems {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxTextBox txtsubject;
+        
+        /// <summary>
+        /// txtCreationDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox txtCreationDate;
         
         /// <summary>
         /// drpapartmentnumber control.
@@ -146,6 +173,15 @@ namespace MZ.ComplaintsSystems {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxTextBox txtcustomername;
+        
+        /// <summary>
+        /// ASPxTextBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox ASPxTextBox1;
         
         /// <summary>
         /// drpownertype control.

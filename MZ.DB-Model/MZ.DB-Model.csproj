@@ -115,6 +115,7 @@
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>MZDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MZDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -129,6 +130,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MZDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Notification.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -210,6 +214,9 @@
     <Compile Include="usp_ComplaintsSelect_Result.cs">
       <DependentUpon>MZDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="usp_ComplaintsUpdateProcedure_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="usp_ComplaintsUpdate_Result.cs">
       <DependentUpon>MZDB.tt</DependentUpon>
     </Compile>
@@ -220,6 +227,30 @@
       <DependentUpon>MZDB.tt</DependentUpon>
     </Compile>
     <Compile Include="usp_CustomersUpdate_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_NotificationInsert1_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_NotificationInsertProcedure1_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_NotificationInsertProcedure_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_NotificationInsert_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_NotificationMessagesInsertProcedure_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_NotificationsMessagesUpdate_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_NotificationsUpdate1_Result.cs">
+      <DependentUpon>MZDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_NotificationsUpdate_Result.cs">
       <DependentUpon>MZDB.tt</DependentUpon>
     </Compile>
     <Compile Include="usp_QueryComplaints_Result.cs">
@@ -284,6 +315,7 @@
     </None>
     <None Include="MZDB.edmx.diagram">
       <DependentUpon>MZDB.edmx</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
     <None Include="MZDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

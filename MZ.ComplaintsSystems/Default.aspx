@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="MZ.ComplaintsSystems._Default" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Shared/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="MZ.ComplaintsSystems._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -146,7 +146,6 @@
                                     <i class="fa fa-bar-chart fa-3x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    
                                     <div><strong>التقارير</strong></div>
                                 </div>
                             </div>

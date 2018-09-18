@@ -50,6 +50,7 @@ namespace MZ.DB_Model
         public virtual DbSet<aspnet_WebEvent_Events> aspnet_WebEvent_Events { get; set; }
         public virtual DbSet<Vw_RegularMaintenance> Vw_RegularMaintenance { get; set; }
         public virtual DbSet<technician> technicians { get; set; }
+        public virtual DbSet<Notification> Notifications { get; set; }
     
         public virtual int usp_ApartmentsDelete(Nullable<decimal> iD)
         {
@@ -873,6 +874,331 @@ namespace MZ.DB_Model
                 new ObjectParameter("occupation", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_techniciansUpdate_Result>("usp_techniciansUpdate", iDParameter, nameParameter, phoneParameter, occupationParameter);
+        }
+    
+        public virtual ObjectResult<usp_NotificationInsert_Result> usp_NotificationInsert(string mobileNumber, string message, string messageText, string errorMessage, Nullable<decimal> status, Nullable<decimal> createdBy, Nullable<System.DateTime> creationDate)
+        {
+            var mobileNumberParameter = mobileNumber != null ?
+                new ObjectParameter("MobileNumber", mobileNumber) :
+                new ObjectParameter("MobileNumber", typeof(string));
+    
+            var messageParameter = message != null ?
+                new ObjectParameter("Message", message) :
+                new ObjectParameter("Message", typeof(string));
+    
+            var messageTextParameter = messageText != null ?
+                new ObjectParameter("MessageText", messageText) :
+                new ObjectParameter("MessageText", typeof(string));
+    
+            var errorMessageParameter = errorMessage != null ?
+                new ObjectParameter("ErrorMessage", errorMessage) :
+                new ObjectParameter("ErrorMessage", typeof(string));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(decimal));
+    
+            var createdByParameter = createdBy.HasValue ?
+                new ObjectParameter("CreatedBy", createdBy) :
+                new ObjectParameter("CreatedBy", typeof(decimal));
+    
+            var creationDateParameter = creationDate.HasValue ?
+                new ObjectParameter("CreationDate", creationDate) :
+                new ObjectParameter("CreationDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_NotificationInsert_Result>("usp_NotificationInsert", mobileNumberParameter, messageParameter, messageTextParameter, errorMessageParameter, statusParameter, createdByParameter, creationDateParameter);
+        }
+    
+        public virtual ObjectResult<usp_NotificationsUpdate_Result> usp_NotificationsUpdate(Nullable<decimal> iD, Nullable<decimal> status, string errorMessage, Nullable<decimal> updatedBy, Nullable<System.DateTime> updateDate)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(decimal));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(decimal));
+    
+            var errorMessageParameter = errorMessage != null ?
+                new ObjectParameter("ErrorMessage", errorMessage) :
+                new ObjectParameter("ErrorMessage", typeof(string));
+    
+            var updatedByParameter = updatedBy.HasValue ?
+                new ObjectParameter("UpdatedBy", updatedBy) :
+                new ObjectParameter("UpdatedBy", typeof(decimal));
+    
+            var updateDateParameter = updateDate.HasValue ?
+                new ObjectParameter("UpdateDate", updateDate) :
+                new ObjectParameter("UpdateDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_NotificationsUpdate_Result>("usp_NotificationsUpdate", iDParameter, statusParameter, errorMessageParameter, updatedByParameter, updateDateParameter);
+        }
+    
+        public virtual ObjectResult<usp_ComplaintsUpdateProcedure_Result> usp_ComplaintsUpdateProcedure(Nullable<decimal> iD, Nullable<decimal> apartmentId, Nullable<decimal> lvl1ID, Nullable<decimal> lVL2ID, Nullable<decimal> lVL3ID, Nullable<System.DateTime> appointmentDateTime, Nullable<System.DateTime> createDateTime, Nullable<decimal> paint, Nullable<decimal> status, Nullable<decimal> issueId, string techName, string userId, string note, string subject, string id_Numer, string phone, string cutomer_Name, Nullable<decimal> customer_Type, string other, string otherApartment)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(decimal));
+    
+            var apartmentIdParameter = apartmentId.HasValue ?
+                new ObjectParameter("ApartmentId", apartmentId) :
+                new ObjectParameter("ApartmentId", typeof(decimal));
+    
+            var lvl1IDParameter = lvl1ID.HasValue ?
+                new ObjectParameter("Lvl1ID", lvl1ID) :
+                new ObjectParameter("Lvl1ID", typeof(decimal));
+    
+            var lVL2IDParameter = lVL2ID.HasValue ?
+                new ObjectParameter("LVL2ID", lVL2ID) :
+                new ObjectParameter("LVL2ID", typeof(decimal));
+    
+            var lVL3IDParameter = lVL3ID.HasValue ?
+                new ObjectParameter("LVL3ID", lVL3ID) :
+                new ObjectParameter("LVL3ID", typeof(decimal));
+    
+            var appointmentDateTimeParameter = appointmentDateTime.HasValue ?
+                new ObjectParameter("AppointmentDateTime", appointmentDateTime) :
+                new ObjectParameter("AppointmentDateTime", typeof(System.DateTime));
+    
+            var createDateTimeParameter = createDateTime.HasValue ?
+                new ObjectParameter("CreateDateTime", createDateTime) :
+                new ObjectParameter("CreateDateTime", typeof(System.DateTime));
+    
+            var paintParameter = paint.HasValue ?
+                new ObjectParameter("Paint", paint) :
+                new ObjectParameter("Paint", typeof(decimal));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(decimal));
+    
+            var issueIdParameter = issueId.HasValue ?
+                new ObjectParameter("IssueId", issueId) :
+                new ObjectParameter("IssueId", typeof(decimal));
+    
+            var techNameParameter = techName != null ?
+                new ObjectParameter("TechName", techName) :
+                new ObjectParameter("TechName", typeof(string));
+    
+            var userIdParameter = userId != null ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(string));
+    
+            var noteParameter = note != null ?
+                new ObjectParameter("Note", note) :
+                new ObjectParameter("Note", typeof(string));
+    
+            var subjectParameter = subject != null ?
+                new ObjectParameter("Subject", subject) :
+                new ObjectParameter("Subject", typeof(string));
+    
+            var id_NumerParameter = id_Numer != null ?
+                new ObjectParameter("Id_Numer", id_Numer) :
+                new ObjectParameter("Id_Numer", typeof(string));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("Phone", phone) :
+                new ObjectParameter("Phone", typeof(string));
+    
+            var cutomer_NameParameter = cutomer_Name != null ?
+                new ObjectParameter("Cutomer_Name", cutomer_Name) :
+                new ObjectParameter("Cutomer_Name", typeof(string));
+    
+            var customer_TypeParameter = customer_Type.HasValue ?
+                new ObjectParameter("Customer_Type", customer_Type) :
+                new ObjectParameter("Customer_Type", typeof(decimal));
+    
+            var otherParameter = other != null ?
+                new ObjectParameter("Other", other) :
+                new ObjectParameter("Other", typeof(string));
+    
+            var otherApartmentParameter = otherApartment != null ?
+                new ObjectParameter("OtherApartment", otherApartment) :
+                new ObjectParameter("OtherApartment", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_ComplaintsUpdateProcedure_Result>("usp_ComplaintsUpdateProcedure", iDParameter, apartmentIdParameter, lvl1IDParameter, lVL2IDParameter, lVL3IDParameter, appointmentDateTimeParameter, createDateTimeParameter, paintParameter, statusParameter, issueIdParameter, techNameParameter, userIdParameter, noteParameter, subjectParameter, id_NumerParameter, phoneParameter, cutomer_NameParameter, customer_TypeParameter, otherParameter, otherApartmentParameter);
+        }
+    
+        public virtual ObjectResult<usp_NotificationsUpdate1_Result> usp_NotificationsUpdate1(Nullable<decimal> iD, Nullable<decimal> status, string errorMessage, Nullable<decimal> updatedBy, Nullable<System.DateTime> updateDate)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(decimal));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(decimal));
+    
+            var errorMessageParameter = errorMessage != null ?
+                new ObjectParameter("ErrorMessage", errorMessage) :
+                new ObjectParameter("ErrorMessage", typeof(string));
+    
+            var updatedByParameter = updatedBy.HasValue ?
+                new ObjectParameter("UpdatedBy", updatedBy) :
+                new ObjectParameter("UpdatedBy", typeof(decimal));
+    
+            var updateDateParameter = updateDate.HasValue ?
+                new ObjectParameter("UpdateDate", updateDate) :
+                new ObjectParameter("UpdateDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_NotificationsUpdate1_Result>("usp_NotificationsUpdate1", iDParameter, statusParameter, errorMessageParameter, updatedByParameter, updateDateParameter);
+        }
+    
+        public virtual ObjectResult<usp_NotificationInsert1_Result> usp_NotificationInsert1(string mobileNumber, string message, string messageText, string errorMessage, Nullable<decimal> status, Nullable<decimal> createdBy, Nullable<System.DateTime> creationDate)
+        {
+            var mobileNumberParameter = mobileNumber != null ?
+                new ObjectParameter("MobileNumber", mobileNumber) :
+                new ObjectParameter("MobileNumber", typeof(string));
+    
+            var messageParameter = message != null ?
+                new ObjectParameter("Message", message) :
+                new ObjectParameter("Message", typeof(string));
+    
+            var messageTextParameter = messageText != null ?
+                new ObjectParameter("MessageText", messageText) :
+                new ObjectParameter("MessageText", typeof(string));
+    
+            var errorMessageParameter = errorMessage != null ?
+                new ObjectParameter("ErrorMessage", errorMessage) :
+                new ObjectParameter("ErrorMessage", typeof(string));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(decimal));
+    
+            var createdByParameter = createdBy.HasValue ?
+                new ObjectParameter("CreatedBy", createdBy) :
+                new ObjectParameter("CreatedBy", typeof(decimal));
+    
+            var creationDateParameter = creationDate.HasValue ?
+                new ObjectParameter("CreationDate", creationDate) :
+                new ObjectParameter("CreationDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_NotificationInsert1_Result>("usp_NotificationInsert1", mobileNumberParameter, messageParameter, messageTextParameter, errorMessageParameter, statusParameter, createdByParameter, creationDateParameter);
+        }
+    
+        public virtual ObjectResult<usp_NotificationInsertProcedure_Result> usp_NotificationInsertProcedure(string mobileNumber, string message, string messageText, string errorMessage, Nullable<decimal> status, Nullable<decimal> createdBy, Nullable<System.DateTime> creationDate)
+        {
+            var mobileNumberParameter = mobileNumber != null ?
+                new ObjectParameter("MobileNumber", mobileNumber) :
+                new ObjectParameter("MobileNumber", typeof(string));
+    
+            var messageParameter = message != null ?
+                new ObjectParameter("Message", message) :
+                new ObjectParameter("Message", typeof(string));
+    
+            var messageTextParameter = messageText != null ?
+                new ObjectParameter("MessageText", messageText) :
+                new ObjectParameter("MessageText", typeof(string));
+    
+            var errorMessageParameter = errorMessage != null ?
+                new ObjectParameter("ErrorMessage", errorMessage) :
+                new ObjectParameter("ErrorMessage", typeof(string));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(decimal));
+    
+            var createdByParameter = createdBy.HasValue ?
+                new ObjectParameter("CreatedBy", createdBy) :
+                new ObjectParameter("CreatedBy", typeof(decimal));
+    
+            var creationDateParameter = creationDate.HasValue ?
+                new ObjectParameter("CreationDate", creationDate) :
+                new ObjectParameter("CreationDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_NotificationInsertProcedure_Result>("usp_NotificationInsertProcedure", mobileNumberParameter, messageParameter, messageTextParameter, errorMessageParameter, statusParameter, createdByParameter, creationDateParameter);
+        }
+    
+        public virtual ObjectResult<usp_NotificationInsertProcedure1_Result> usp_NotificationInsertProcedure1(string mobileNumber, string message, string messageText, string errorMessage, Nullable<decimal> status, Nullable<decimal> createdBy, Nullable<System.DateTime> creationDate)
+        {
+            var mobileNumberParameter = mobileNumber != null ?
+                new ObjectParameter("MobileNumber", mobileNumber) :
+                new ObjectParameter("MobileNumber", typeof(string));
+    
+            var messageParameter = message != null ?
+                new ObjectParameter("Message", message) :
+                new ObjectParameter("Message", typeof(string));
+    
+            var messageTextParameter = messageText != null ?
+                new ObjectParameter("MessageText", messageText) :
+                new ObjectParameter("MessageText", typeof(string));
+    
+            var errorMessageParameter = errorMessage != null ?
+                new ObjectParameter("ErrorMessage", errorMessage) :
+                new ObjectParameter("ErrorMessage", typeof(string));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(decimal));
+    
+            var createdByParameter = createdBy.HasValue ?
+                new ObjectParameter("CreatedBy", createdBy) :
+                new ObjectParameter("CreatedBy", typeof(decimal));
+    
+            var creationDateParameter = creationDate.HasValue ?
+                new ObjectParameter("CreationDate", creationDate) :
+                new ObjectParameter("CreationDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_NotificationInsertProcedure1_Result>("usp_NotificationInsertProcedure1", mobileNumberParameter, messageParameter, messageTextParameter, errorMessageParameter, statusParameter, createdByParameter, creationDateParameter);
+        }
+    
+        public virtual ObjectResult<usp_NotificationMessagesInsertProcedure_Result> usp_NotificationMessagesInsertProcedure(string mobileNumber, string message, string messageText, string errorMessage, Nullable<decimal> status, Nullable<decimal> createdBy, Nullable<System.DateTime> creationDate)
+        {
+            var mobileNumberParameter = mobileNumber != null ?
+                new ObjectParameter("MobileNumber", mobileNumber) :
+                new ObjectParameter("MobileNumber", typeof(string));
+    
+            var messageParameter = message != null ?
+                new ObjectParameter("Message", message) :
+                new ObjectParameter("Message", typeof(string));
+    
+            var messageTextParameter = messageText != null ?
+                new ObjectParameter("MessageText", messageText) :
+                new ObjectParameter("MessageText", typeof(string));
+    
+            var errorMessageParameter = errorMessage != null ?
+                new ObjectParameter("ErrorMessage", errorMessage) :
+                new ObjectParameter("ErrorMessage", typeof(string));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(decimal));
+    
+            var createdByParameter = createdBy.HasValue ?
+                new ObjectParameter("CreatedBy", createdBy) :
+                new ObjectParameter("CreatedBy", typeof(decimal));
+    
+            var creationDateParameter = creationDate.HasValue ?
+                new ObjectParameter("CreationDate", creationDate) :
+                new ObjectParameter("CreationDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_NotificationMessagesInsertProcedure_Result>("usp_NotificationMessagesInsertProcedure", mobileNumberParameter, messageParameter, messageTextParameter, errorMessageParameter, statusParameter, createdByParameter, creationDateParameter);
+        }
+    
+        public virtual ObjectResult<usp_NotificationsMessagesUpdate_Result> usp_NotificationsMessagesUpdate(Nullable<decimal> iD, Nullable<decimal> status, string errorMessage, Nullable<decimal> updatedBy, Nullable<System.DateTime> updateDate)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(decimal));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(decimal));
+    
+            var errorMessageParameter = errorMessage != null ?
+                new ObjectParameter("ErrorMessage", errorMessage) :
+                new ObjectParameter("ErrorMessage", typeof(string));
+    
+            var updatedByParameter = updatedBy.HasValue ?
+                new ObjectParameter("UpdatedBy", updatedBy) :
+                new ObjectParameter("UpdatedBy", typeof(decimal));
+    
+            var updateDateParameter = updateDate.HasValue ?
+                new ObjectParameter("UpdateDate", updateDate) :
+                new ObjectParameter("UpdateDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_NotificationsMessagesUpdate_Result>("usp_NotificationsMessagesUpdate", iDParameter, statusParameter, errorMessageParameter, updatedByParameter, updateDateParameter);
         }
     }
 }

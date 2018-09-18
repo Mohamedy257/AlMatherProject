@@ -1,0 +1,26 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Auth.master.cs" Inherits="MZ.ComplaintsSystems.Auth" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%# Scripts.Render("~/bundles/modernizr") %>
+    <%# Styles.Render("~/bundles/css") %>
+    <%# Scripts.Render("~/bundles/Scripts") %>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body style="background-image:url('/Content/Images/Background.jpg');background-position:center;background-repeat:inherit">
+    <form id="form1" runat="server">
+      
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

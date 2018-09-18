@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MZ.ComplaintsSystemsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MZ.ComplaintsSystemsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -191,6 +191,21 @@
           <Property Name="OwnershipType" Type="numeric" Precision="18" Scale="0" />
           <Property Name="Gender" Type="numeric" Precision="18" Scale="0" />
         </EntityType>
+        <EntityType Name="Notifications">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MobileNumber" Type="nvarchar(max)" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="MessageText" Type="nvarchar(max)" />
+          <Property Name="ErrorMessage" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="RegularMaintenance_Items">
           <Key>
             <PropertyRef Name="ID" />
@@ -274,7 +289,19 @@ warning 6002: The table/view 'MZ.ComplaintsSystems.dbo.Vw_RegularMaintenance' do
           <Property Name="ItemId" Type="numeric" Precision="18" Scale="0" />
           <Property Name="TowerId" Type="numeric" Precision="18" Scale="0" />
         </EntityType>
-        <Association Name="FK__aspnet_Pa__Appli__30592A6F">
+        <Association Name="FK__aspnet_Pa__Appli__7D439ABD">
+          <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Paths" Type="Self.aspnet_Paths" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Paths">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pa__Appli__7E37BEF6">
           <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
           <End Role="aspnet_Paths" Type="Self.aspnet_Paths" Multiplicity="*" />
           <ReferentialConstraint>
@@ -321,18 +348,6 @@ warning 6002: The table/view 'MZ.ComplaintsSystems.dbo.Vw_RegularMaintenance' do
             </Principal>
             <Dependent Role="Complaints">
               <PropertyRef Name="ApartmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Complaints_CommonIssues">
-          <End Role="CommonIssues" Type="Self.CommonIssues" Multiplicity="0..1" />
-          <End Role="Complaints" Type="Self.Complaints" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CommonIssues">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Complaints">
-              <PropertyRef Name="IssueId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -456,13 +471,6 @@ warning 6002: The table/view 'MZ.ComplaintsSystems.dbo.Vw_RegularMaintenance' do
           <Parameter Name="ID" Type="numeric" Mode="In" />
           <Parameter Name="AP" Type="numeric" Mode="In" />
         </Function>
-        <Function Name="usp_ApartmentsUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ID" Type="numeric" Mode="In" />
-          <Parameter Name="Name" Type="nvarchar(max)" Mode="In" />
-          <Parameter Name="Desc" Type="nvarchar(max)" Mode="In" />
-          <Parameter Name="Note" Type="nvarchar(max)" Mode="In" />
-          <Parameter Name="TowerID" Type="numeric" Mode="In" />
-        </Function>
         <Function Name="usp_CatogeriesDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="numeric" Mode="In" />
         </Function>
@@ -555,7 +563,7 @@ warning 6002: The table/view 'MZ.ComplaintsSystems.dbo.Vw_RegularMaintenance' do
         <Function Name="usp_ComplaintsSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="numeric" Mode="In" />
         </Function>
-        <Function Name="usp_ComplaintsUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="usp_ComplaintsUpdateProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="numeric" Mode="In" />
           <Parameter Name="ApartmentId" Type="numeric" Mode="In" />
           <Parameter Name="Lvl1ID" Type="numeric" Mode="In" />
@@ -600,6 +608,22 @@ warning 6002: The table/view 'MZ.ComplaintsSystems.dbo.Vw_RegularMaintenance' do
           <Parameter Name="Phone" Type="numeric" Mode="In" />
           <Parameter Name="OwnershipType" Type="numeric" Mode="In" />
           <Parameter Name="Gender" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="usp_NotificationMessagesInsertProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MobileNumber" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Message" Type="varchar(max)" Mode="In" />
+          <Parameter Name="MessageText" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="ErrorMessage" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Status" Type="numeric" Mode="In" />
+          <Parameter Name="CreatedBy" Type="numeric" Mode="In" />
+          <Parameter Name="CreationDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="usp_NotificationsMessagesUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="numeric" Mode="In" />
+          <Parameter Name="Status" Type="numeric" Mode="In" />
+          <Parameter Name="ErrorMessage" Type="varchar(max)" Mode="In" />
+          <Parameter Name="UpdatedBy" Type="numeric" Mode="In" />
+          <Parameter Name="UpdateDate" Type="datetime" Mode="In" />
         </Function>
         <Function Name="usp_QueryComplaints" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ApartmentId" Type="numeric" Mode="In" />
@@ -686,6 +710,7 @@ warning 6002: The table/view 'MZ.ComplaintsSystems.dbo.Vw_RegularMaintenance' do
           <EntitySet Name="CommonTypes" EntityType="Self.CommonTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Complaints" EntityType="Self.Complaints" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegularMaintenance_Items" EntityType="Self.RegularMaintenance_Items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegularMaintence" EntityType="Self.RegularMaintence" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
@@ -726,7 +751,11 @@ warning 6002: The table/view 'MZ.ComplaintsSystems.dbo.Vw_RegularMaintenance' do
     [Vw_RegularMaintenance].[TowerId] AS [TowerId]
     FROM [dbo].[Vw_RegularMaintenance] AS [Vw_RegularMaintenance]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__aspnet_Pa__Appli__30592A6F" Association="Self.FK__aspnet_Pa__Appli__30592A6F">
+          <AssociationSet Name="FK__aspnet_Pa__Appli__7D439ABD" Association="Self.FK__aspnet_Pa__Appli__7D439ABD">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pa__Appli__7E37BEF6" Association="Self.FK__aspnet_Pa__Appli__7E37BEF6">
             <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
             <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
           </AssociationSet>
@@ -740,10 +769,6 @@ warning 6002: The table/view 'MZ.ComplaintsSystems.dbo.Vw_RegularMaintenance' do
           </AssociationSet>
           <AssociationSet Name="FK_Complaints_Apartments_02" Association="Self.FK_Complaints_Apartments_02">
             <End Role="Apartments" EntitySet="Apartments" />
-            <End Role="Complaints" EntitySet="Complaints" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Complaints_CommonIssues" Association="Self.FK_Complaints_CommonIssues">
-            <End Role="CommonIssues" EntitySet="CommonIssues" />
             <End Role="Complaints" EntitySet="Complaints" />
           </AssociationSet>
           <AssociationSet Name="FK_Complaints_CommonItems" Association="Self.FK_Complaints_CommonItems">
@@ -1378,6 +1403,95 @@ warning 6002: The table/view 'MZ.ComplaintsSystems.dbo.Vw_RegularMaintenance' do
             <Parameter Name="Phone" Mode="In" Type="String" />
             <Parameter Name="occupation" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Notifications" EntityType="MZ.ComplaintsSystemsModel.Notification" />
+          <FunctionImport Name="usp_NotificationInsert" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_NotificationInsert_Result)">
+            <Parameter Name="MobileNumber" Mode="In" Type="String" />
+            <Parameter Name="Message" Mode="In" Type="String" />
+            <Parameter Name="MessageText" Mode="In" Type="String" />
+            <Parameter Name="ErrorMessage" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Decimal" />
+            <Parameter Name="CreatedBy" Mode="In" Type="Decimal" />
+            <Parameter Name="CreationDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="usp_NotificationsUpdate" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_NotificationsUpdate_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="Status" Mode="In" Type="Decimal" />
+            <Parameter Name="ErrorMessage" Mode="In" Type="String" />
+            <Parameter Name="UpdatedBy" Mode="In" Type="Decimal" />
+            <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ComplaintsUpdateProcedure" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_ComplaintsUpdateProcedure_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="ApartmentId" Mode="In" Type="Decimal" />
+            <Parameter Name="Lvl1ID" Mode="In" Type="Decimal" />
+            <Parameter Name="LVL2ID" Mode="In" Type="Decimal" />
+            <Parameter Name="LVL3ID" Mode="In" Type="Decimal" />
+            <Parameter Name="AppointmentDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="CreateDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="Paint" Mode="In" Type="Decimal" />
+            <Parameter Name="Status" Mode="In" Type="Decimal" />
+            <Parameter Name="IssueId" Mode="In" Type="Decimal" />
+            <Parameter Name="TechName" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="String" />
+            <Parameter Name="Note" Mode="In" Type="String" />
+            <Parameter Name="Subject" Mode="In" Type="String" />
+            <Parameter Name="Id_Numer" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Cutomer_Name" Mode="In" Type="String" />
+            <Parameter Name="Customer_Type" Mode="In" Type="Decimal" />
+            <Parameter Name="Other" Mode="In" Type="String" />
+            <Parameter Name="OtherApartment" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_NotificationsUpdate1" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_NotificationsUpdate1_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="Status" Mode="In" Type="Decimal" />
+            <Parameter Name="ErrorMessage" Mode="In" Type="String" />
+            <Parameter Name="UpdatedBy" Mode="In" Type="Decimal" />
+            <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="usp_NotificationInsert1" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_NotificationInsert1_Result)">
+            <Parameter Name="MobileNumber" Mode="In" Type="String" />
+            <Parameter Name="Message" Mode="In" Type="String" />
+            <Parameter Name="MessageText" Mode="In" Type="String" />
+            <Parameter Name="ErrorMessage" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Decimal" />
+            <Parameter Name="CreatedBy" Mode="In" Type="Decimal" />
+            <Parameter Name="CreationDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="usp_NotificationInsertProcedure" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_NotificationInsertProcedure_Result)">
+            <Parameter Name="MobileNumber" Mode="In" Type="String" />
+            <Parameter Name="Message" Mode="In" Type="String" />
+            <Parameter Name="MessageText" Mode="In" Type="String" />
+            <Parameter Name="ErrorMessage" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Decimal" />
+            <Parameter Name="CreatedBy" Mode="In" Type="Decimal" />
+            <Parameter Name="CreationDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="usp_NotificationInsertProcedure1" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_NotificationInsertProcedure1_Result)">
+            <Parameter Name="MobileNumber" Mode="In" Type="String" />
+            <Parameter Name="Message" Mode="In" Type="String" />
+            <Parameter Name="MessageText" Mode="In" Type="String" />
+            <Parameter Name="ErrorMessage" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Decimal" />
+            <Parameter Name="CreatedBy" Mode="In" Type="Decimal" />
+            <Parameter Name="CreationDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="usp_NotificationMessagesInsertProcedure" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_NotificationMessagesInsertProcedure_Result)">
+            <Parameter Name="MobileNumber" Mode="In" Type="String" />
+            <Parameter Name="Message" Mode="In" Type="String" />
+            <Parameter Name="MessageText" Mode="In" Type="String" />
+            <Parameter Name="ErrorMessage" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Decimal" />
+            <Parameter Name="CreatedBy" Mode="In" Type="Decimal" />
+            <Parameter Name="CreationDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="usp_NotificationsMessagesUpdate" ReturnType="Collection(MZ.ComplaintsSystemsModel.usp_NotificationsMessagesUpdate_Result)">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="Status" Mode="In" Type="Decimal" />
+            <Parameter Name="ErrorMessage" Mode="In" Type="String" />
+            <Parameter Name="UpdatedBy" Mode="In" Type="Decimal" />
+            <Parameter Name="UpdateDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="usp_ApartmentsInsert_Result">
           <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
@@ -1783,6 +1897,126 @@ warning 6002: The table/view 'MZ.ComplaintsSystems.dbo.Vw_RegularMaintenance' do
           <Property Type="String" Name="Phone" Nullable="true" />
           <Property Type="String" Name="occupation" Nullable="true" />
         </ComplexType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="MobileNumber" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MessageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="usp_NotificationInsert_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" />
+          <Property Type="String" Name="Status" Nullable="true" />
+          <Property Type="Decimal" Name="CreatedBy" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_NotificationsUpdate_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" />
+          <Property Type="String" Name="Status" Nullable="true" />
+          <Property Type="Decimal" Name="CreatedBy" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" />
+          <Property Type="Decimal" Name="UpdatedBy" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_ComplaintsUpdateProcedure_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="ApartmentId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Lvl1ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="LVL2ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="LVL3ID" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="AppointmentDateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="CreateDateTime" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Paint" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Status" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="IssueId" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="TechName" Nullable="true" />
+          <Property Type="String" Name="UserId" Nullable="true" />
+          <Property Type="String" Name="Note" Nullable="true" />
+          <Property Type="String" Name="Subject" Nullable="true" />
+          <Property Type="String" Name="Id_Numer" Nullable="true" />
+          <Property Type="String" Name="Phone" Nullable="true" />
+          <Property Type="String" Name="Cutomer_Name" Nullable="true" />
+          <Property Type="Decimal" Name="Customer_Type" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Other" Nullable="true" />
+          <Property Type="String" Name="OtherApartment" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_NotificationsUpdate1_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" />
+          <Property Type="String" Name="Status" Nullable="true" />
+          <Property Type="Decimal" Name="CreatedBy" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="UpdatedBy" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="usp_NotificationInsert1_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" />
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="String" Name="MobileNumber1" Nullable="true" />
+          <Property Type="String" Name="MessageText" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" />
+          <Property Type="String" Name="Status" Nullable="true" />
+          <Property Type="Decimal" Name="CreatedBy" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="usp_NotificationInsertProcedure_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" />
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="String" Name="MobileNumber1" Nullable="true" />
+          <Property Type="String" Name="MessageText" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" />
+          <Property Type="String" Name="Status" Nullable="true" />
+          <Property Type="Decimal" Name="CreatedBy" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="usp_NotificationInsertProcedure1_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" />
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="String" Name="MobileNumber1" Nullable="true" />
+          <Property Type="String" Name="MessageText" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" />
+          <Property Type="String" Name="Status" Nullable="true" />
+          <Property Type="Decimal" Name="CreatedBy" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="usp_NotificationMessagesInsertProcedure_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" />
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="String" Name="MessageText" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" />
+          <Property Type="String" Name="Status" Nullable="true" />
+          <Property Type="Decimal" Name="CreatedBy" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="usp_NotificationsMessagesUpdate_Result">
+          <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" />
+          <Property Type="String" Name="Status" Nullable="true" />
+          <Property Type="Decimal" Name="CreatedBy" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="UpdatedBy" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="UpdateDate" Nullable="true" Precision="23" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1989,17 +2223,6 @@ warning 6002: The table/view 'MZ.ComplaintsSystems.dbo.Vw_RegularMaintenance' do
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_ApartmentsUpdate" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_ApartmentsUpdate">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_ApartmentsUpdate_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Desc" ColumnName="Desc" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="TowerID" ColumnName="TowerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_CatogeriesDelete" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CatogeriesDelete" />
           <FunctionImportMapping FunctionImportName="usp_CatogeriesInsert" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_CatogeriesInsert">
             <ResultMapping>
@@ -2152,30 +2375,6 @@ warning 6002: The table/view 'MZ.ComplaintsSystems.dbo.Vw_RegularMaintenance' do
           <FunctionImportMapping FunctionImportName="usp_ComplaintsSelect" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_ComplaintsSelect">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_ComplaintsSelect_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ApartmentId" ColumnName="ApartmentId" />
-                <ScalarProperty Name="Lvl1ID" ColumnName="Lvl1ID" />
-                <ScalarProperty Name="LVL2ID" ColumnName="LVL2ID" />
-                <ScalarProperty Name="LVL3ID" ColumnName="LVL3ID" />
-                <ScalarProperty Name="AppointmentDateTime" ColumnName="AppointmentDateTime" />
-                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
-                <ScalarProperty Name="Paint" ColumnName="Paint" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="IssueId" ColumnName="IssueId" />
-                <ScalarProperty Name="TechName" ColumnName="TechName" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Subject" ColumnName="Subject" />
-                <ScalarProperty Name="Id_Numer" ColumnName="Id_Numer" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Cutomer_Name" ColumnName="Cutomer_Name" />
-                <ScalarProperty Name="Customer_Type" ColumnName="Customer_Type" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_ComplaintsUpdate" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_ComplaintsUpdate">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_ComplaintsUpdate_Result">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ApartmentId" ColumnName="ApartmentId" />
                 <ScalarProperty Name="Lvl1ID" ColumnName="Lvl1ID" />
@@ -2504,6 +2703,77 @@ warning 6002: The table/view 'MZ.ComplaintsSystems.dbo.Vw_RegularMaintenance' do
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="occupation" ColumnName="occupation" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="MZ.ComplaintsSystemsModel.Notification">
+              <MappingFragment StoreEntitySet="Notifications">
+                <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_ComplaintsUpdateProcedure" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_ComplaintsUpdateProcedure">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_ComplaintsUpdateProcedure_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ApartmentId" ColumnName="ApartmentId" />
+                <ScalarProperty Name="Lvl1ID" ColumnName="Lvl1ID" />
+                <ScalarProperty Name="LVL2ID" ColumnName="LVL2ID" />
+                <ScalarProperty Name="LVL3ID" ColumnName="LVL3ID" />
+                <ScalarProperty Name="AppointmentDateTime" ColumnName="AppointmentDateTime" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="Paint" ColumnName="Paint" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IssueId" ColumnName="IssueId" />
+                <ScalarProperty Name="TechName" ColumnName="TechName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Id_Numer" ColumnName="Id_Numer" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Cutomer_Name" ColumnName="Cutomer_Name" />
+                <ScalarProperty Name="Customer_Type" ColumnName="Customer_Type" />
+                <ScalarProperty Name="Other" ColumnName="Other" />
+                <ScalarProperty Name="OtherApartment" ColumnName="OtherApartment" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_NotificationMessagesInsertProcedure" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_NotificationMessagesInsertProcedure">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_NotificationMessagesInsertProcedure_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_NotificationsMessagesUpdate" FunctionName="MZ.ComplaintsSystemsModel.Store.usp_NotificationsMessagesUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MZ.ComplaintsSystemsModel.usp_NotificationsMessagesUpdate_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

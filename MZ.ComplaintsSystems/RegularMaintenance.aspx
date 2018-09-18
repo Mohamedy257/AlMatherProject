@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegularMaintenance.aspx.cs" Inherits="MZ.ComplaintsSystems.RegularMaintenance" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/Site.Master" AutoEventWireup="true" CodeBehind="RegularMaintenance.aspx.cs" Inherits="MZ.ComplaintsSystems.RegularMaintenance" %>
 
 <%@ Register Assembly="DevExpress.Web.v14.2, Version=14.2.14.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
@@ -21,7 +21,11 @@
              </div>
                   <div class="col-lg-3">
              <div class="form-horizontal">
-                      <dx:ASPxDateEdit ID="dtemaintenance" RightToLeft="True" NullText="يوم/شهر/سنة" CssClass="form-control" runat="server"></dx:ASPxDateEdit>
+                      <dx:ASPxDateEdit ID="dtemaintenance" RightToLeft="True" NullText="يوم/شهر/سنة" CssClass="form-control" runat="server">
+                          <ValidationSettings>
+                              <RequiredField IsRequired="True" />
+                          </ValidationSettings>
+                      </dx:ASPxDateEdit>
                
                    </div>
                   </div>
@@ -36,6 +40,9 @@
                                                  <Items>
                                                      <dx:ListEditItem />
                                                  </Items>
+                                                 <ValidationSettings>
+                                                     <RequiredField IsRequired="True" />
+                                                 </ValidationSettings>
                                                 </dx:ASPxComboBox>
                
                    </div>

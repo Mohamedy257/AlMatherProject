@@ -494,9 +494,9 @@
             // xrPictureBox1
             // 
             this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(651.5182F, 0F);
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(584.36F, 10.00001F);
             this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(88.48181F, 78.57143F);
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(77.87201F, 80F);
             // 
             // xrLabel23
             // 

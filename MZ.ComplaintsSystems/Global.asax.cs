@@ -7,6 +7,8 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using Microsoft.AspNet.Identity;
+using MZ.ComplaintsSystems.Util;
+
 namespace MZ.ComplaintsSystems
 {
     public class Global : HttpApplication
@@ -16,12 +18,19 @@ namespace MZ.ComplaintsSystems
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            log4net.Config.XmlConfigurator.Configure();
         }
-        void Application_AuthenticateRequest(object sender, EventArgs e)
+        
+        protected void Application_Error(object sender, EventArgs e)
         {
-         
-
+            Exception exception = Server.GetLastError();
+            if (exception != null)
+            {
+                if (exception.InnerException != null)
+                    Log.Error(exception.InnerException.StackTrace);
+                else
+                    Log.Error(exception.StackTrace);
+            }
         }
-       
     }
 }

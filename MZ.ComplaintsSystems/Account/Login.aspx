@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Auth.Master" CodeBehind="Login.aspx.cs" Inherits="MZ.ComplaintsSystems.Account.Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Shared/Auth.Master" CodeBehind="Login.aspx.cs" Inherits="MZ.ComplaintsSystems.Account.Login" %>
 
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
@@ -6,6 +6,7 @@
     <h2><%: Title %>.</h2>
     <div class="container">
     <div class="row">
+         <img src="../Content/Images/logo.jpg" style="width:160px;height:120px;margin:auto;display:block"/>
         <div class="col-md-4 col-md-offset-4">
            <div class="login-panel panel panel-default">
                 <div class="panel-heading">

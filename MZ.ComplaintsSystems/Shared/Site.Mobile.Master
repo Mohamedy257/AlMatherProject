@@ -1,0 +1,26 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Mobile.master.cs" Inherits="MZ.ComplaintsSystems.Site_Mobile" %>
+
+<%@ Register Src="~/ViewSwitcher.ascx" TagPrefix="friendlyUrls" TagName="ViewSwitcher" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <%# Scripts.Render("~/bundles/modernizr") %>
+    <%# Styles.Render("~/bundles/css") %>
+    <%# Scripts.Render("~/bundles/Scripts") %>
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+
+
+            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+
+
+        </div>
+    </form>
+</body>
+</html>

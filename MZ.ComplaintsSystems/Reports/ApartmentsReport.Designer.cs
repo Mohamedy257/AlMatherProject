@@ -431,7 +431,7 @@
             // xrLabel41
             // 
             this.xrLabel41.ForeColor = System.Drawing.Color.Green;
-            this.xrLabel41.LocationFloat = new DevExpress.Utils.PointFloat(81.25F, 0F);
+            this.xrLabel41.LocationFloat = new DevExpress.Utils.PointFloat(35.1487F, 0F);
             this.xrLabel41.Name = "xrLabel41";
             this.xrLabel41.SizeF = new System.Drawing.SizeF(637.5F, 37.5F);
             this.xrLabel41.StyleName = "Title";
@@ -492,14 +492,14 @@
             // xrPictureBox1
             // 
             this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(651.5182F, 0F);
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(584.1669F, 10.00001F);
             this.xrPictureBox1.Name = "xrPictureBox1";
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(88.48181F, 78.57143F);
             // 
             // xrLabel23
             // 
             this.xrLabel23.Font = new System.Drawing.Font("Andalus", 18F);
-            this.xrLabel23.LocationFloat = new DevExpress.Utils.PointFloat(275F, 25F);
+            this.xrLabel23.LocationFloat = new DevExpress.Utils.PointFloat(199.8203F, 22.91667F);
             this.xrLabel23.Name = "xrLabel23";
             this.xrLabel23.Padding = new DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100F);
             this.xrLabel23.SizeF = new System.Drawing.SizeF(250F, 37.5F);
